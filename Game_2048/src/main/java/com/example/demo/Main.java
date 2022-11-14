@@ -67,6 +67,10 @@ public class Main extends Application {
         GameScene game = new GameScene();
         game.game(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot);
 
+        //Set Title of Stage as '2048'
+        primaryStage.setTitle("2048");
+
+        //Starts up application once 'Run' button is pressed
         primaryStage.show();
     }
 
