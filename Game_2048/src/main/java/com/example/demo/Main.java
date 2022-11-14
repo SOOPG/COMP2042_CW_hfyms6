@@ -70,7 +70,7 @@ public class Main extends Application {
         //Set Title of Stage as '2048'
         primaryStage.setTitle("2048");
 
-        //Starts up application once 'Run' button is pressed
+        //Starts up application once 'Run' button is clicked
         primaryStage.show();
     }
 
