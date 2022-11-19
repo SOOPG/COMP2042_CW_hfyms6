@@ -1,4 +1,4 @@
-package com.example.demo;
+package game;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -51,37 +51,34 @@ public class EndGame {
         root.getChildren().add(quitButton);
 
         //Set Quit button taking input as mouse click then perform the event
-        quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
+        quitButton.setOnMouseClicked(event -> {
 
-                /*Prompts a Warning Dialog warning users to save before quiting the game
-                Alert warning = new Alert(Alert.AlertType.WARNING);
-                warning.setTitle("Warning");
-                warning.setHeaderText("Quiting This Application Without Saving Will Delete Your High Score");
+            /*Prompts a Warning Dialog warning users to save before quiting the game
+            Alert warning = new Alert(Alert.AlertType.WARNING);
+            warning.setTitle("Warning");
+            warning.setHeaderText("Quiting This Application Without Saving Will Delete Your High Score");
 
-                //Wait for user's mouse prompt
-                Optional<ButtonType> warningResult = warning.showAndWait();
-                */
+            //Wait for user's mouse prompt
+            Optional<ButtonType> warningResult = warning.showAndWait();
+            */
 
-                //Prompts a Confirming Dialog asking users to confirm in quiting the game
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Quit Application");
-                alert.setHeaderText("Confirm Quit");
-                alert.setContentText("Are you sure you want to quit this game?");
+            //Prompts a Confirming Dialog asking users to confirm in quiting the game
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Quit Application");
+            alert.setHeaderText("Confirm Quit");
+            alert.setContentText("Are you sure you want to quit this game?");
 
-                //Wait for user's mouse prompt
-                Optional<ButtonType> result = alert.showAndWait();
+            //Wait for user's mouse prompt
+            Optional<ButtonType> result = alert.showAndWait();
 
-                if (result.get() == ButtonType.OK){
-                    root.getChildren().clear();
-                    Platform.exit(); //Exit Application
-                    /*
-                    If button 'OK' is clicked,
-                    Clear Text and UI in the Scene in Primary Stage
-                    Terminate and Exit the Application
-                     */
-                }
+            if (result.get() == ButtonType.OK){
+                root.getChildren().clear();
+                Platform.exit(); //Exit Application
+                /*
+                If button 'OK' is clicked,
+                Clear Text and UI in the Scene in Primary Stage
+                Terminate and Exit the Application
+                 */
             }
         });
     }
