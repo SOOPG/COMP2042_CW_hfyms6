@@ -44,10 +44,19 @@ public class EndGame {
         scoreText.relocate(250,600);
         root.getChildren().add(scoreText);
 
-        Button quitButton = new Button("QUIT");
+        Button saveScoreButton=new Button("Save Score");
+        saveScoreButton.setTextFill(Color.BLACK);
+        saveScoreButton.setPrefSize(100,30);
+        saveScoreButton.relocate(250,800);
+        root.getChildren().add(saveScoreButton);
+
+
+
+
+        Button quitButton = new Button("Quit");
         quitButton.setTextFill(Color.BLACK);
         quitButton.setPrefSize(100,30);
-        quitButton.relocate(100,800);
+        quitButton.relocate(580,800);
         root.getChildren().add(quitButton);
 
         //Set Quit button taking input as mouse click then perform the event
