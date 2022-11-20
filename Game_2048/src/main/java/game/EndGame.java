@@ -12,9 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.util.Optional;
-
 
 public class EndGame {
 
@@ -32,7 +30,11 @@ public class EndGame {
         return singleInstance;
     }
 
+    //Create new instance of ScoreSaver
+    public ScoreSaver scoreSaved=new ScoreSaver();
+
     public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score){
+
         Text gameOverText = new Text("GAME OVER");
         gameOverText.setFont(Font.font(80));
         gameOverText.relocate(250,250);
@@ -50,8 +52,18 @@ public class EndGame {
         saveScoreButton.relocate(250,800);
         root.getChildren().add(saveScoreButton);
 
+        //Save score when user clicks on button
+        saveScoreButton.setOnMouseClicked(event -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Save High Score");
+            alert.setHeaderText("Are you sure you want to save this score?");
 
+            Optional<ButtonType> result = alert.showAndWait();
 
+            if (result.get() == ButtonType.OK){
+            scoreSaved.saveScoreButtonClicked();
+            }
+        });
 
         Button quitButton = new Button("Quit");
         quitButton.setTextFill(Color.BLACK);
@@ -69,6 +81,14 @@ public class EndGame {
 
             //Wait for user's mouse prompt
             Optional<ButtonType> warningResult = warning.showAndWait();
+
+            if (result.get() == ButtonType.OK){
+                root.getChildren().clear();
+                /*
+                If button 'OK' is clicked,
+                Clear Text and UI in the Scene in Primary Stage
+                Go to
+            }
             */
 
             //Prompts a Confirming Dialog asking users to confirm in quiting the game
