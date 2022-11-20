@@ -58,10 +58,18 @@ public class EndGame {
             alert.setTitle("Save High Score");
             alert.setHeaderText("Are you sure you want to save this score?");
 
-            Optional<ButtonType> result = alert.showAndWait();
+            Optional<ButtonType> resultOfSaveButton = alert.showAndWait();
 
-            if (result.get() == ButtonType.OK){
-            scoreSaved.saveScoreButtonClicked();
+            if (resultOfSaveButton.get() == ButtonType.OK){
+
+                //Writes score into save file
+                scoreSaved.saveScoreButtonClicked(score);
+
+                //Alerts User that score is saved
+                Alert alertSaved = new Alert(Alert.AlertType.INFORMATION);
+                alertSaved.setTitle("Saved");
+                alertSaved.setHeaderText("Score and Name saved successfully");
+                alertSaved.show();
             }
         });
 
@@ -92,13 +100,13 @@ public class EndGame {
             */
 
             //Prompts a Confirming Dialog asking users to confirm in quiting the game
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Quit Application");
-            alert.setHeaderText("Confirm Quit");
-            alert.setContentText("Are you sure you want to quit this game?");
+            Alert alertQuitConfirmation = new Alert(Alert.AlertType.CONFIRMATION);
+            alertQuitConfirmation.setTitle("Quit Application");
+            alertQuitConfirmation.setHeaderText("Confirm Quit");
+            alertQuitConfirmation.setContentText("Are you sure you want to quit this game?");
 
             //Wait for user's mouse prompt
-            Optional<ButtonType> result = alert.showAndWait();
+            Optional<ButtonType> result = alertQuitConfirmation.showAndWait();
 
             if (result.get() == ButtonType.OK){
                 root.getChildren().clear();
