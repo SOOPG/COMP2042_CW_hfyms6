@@ -13,14 +13,22 @@ import java.util.Random;
 
 class GameScene {
     private static int HEIGHT = 700;
+
+    //Total Number of Cells for 2 axises (X and Y)
     private static int n = 4;
+
+    //Distance btw Cells
     private final static int distanceBetweenCells = 10;
+
     private static double LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
     private TextMaker textMaker = TextMaker.getSingleInstance();
     private Cell[][] cells = new Cell[n][n];
     private Group root;
+
+    //Sum of Score of Current Game Session
     private long score = 0;
 
+    //How many Cells
     static void setN(int number) {
         n = number;
         LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
@@ -30,8 +38,11 @@ class GameScene {
         return LENGTH;
     }
 
+    // Fills in a number either 2 or 4 each turn in random locations
+    // Within the cell that is not occupied by a number cell
     private void randomFillNumber(int turn) {
 
+        // why a,b
         Cell[][] emptyCells = new Cell[n][n];
         int a = 0;
         int b = 0;
@@ -56,8 +67,7 @@ class GameScene {
             }
         }
 
-
-
+        //Input either '2' or '4' in empty cells
         Text text;
         Random random = new Random();
         boolean putTwo = true;
@@ -79,6 +89,7 @@ class GameScene {
         }
     }
 
+    //Check if have empty cell
     private int  haveEmptyCell() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -237,6 +248,7 @@ class GameScene {
         return false;
     }
 
+    //If no empty cells set condition to end
     private boolean canNotMove() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -277,6 +289,7 @@ class GameScene {
         scoreText.setFont(Font.font(20));
         scoreText.setText("0");
 
+        // Initially spawns 2 cells
         randomFillNumber(1);
         randomFillNumber(1);
 
