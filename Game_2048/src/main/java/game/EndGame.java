@@ -51,7 +51,6 @@ public class EndGame {
         saveScoreButton.setPrefSize(100,30);
         saveScoreButton.relocate(250,800);
         root.getChildren().add(saveScoreButton);
-
         //Save score when user clicks on button
         saveScoreButton.setOnMouseClicked(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -101,8 +100,8 @@ public class EndGame {
 
             //Prompts a Confirming Dialog asking users to confirm in quiting the game
             Alert alertQuitConfirmation = new Alert(Alert.AlertType.CONFIRMATION);
-            alertQuitConfirmation.setTitle("Quit Application");
-            alertQuitConfirmation.setHeaderText("Confirm Quit");
+            alertQuitConfirmation.setTitle("Quit");
+            alertQuitConfirmation.setHeaderText("Confirm Exit?");
             alertQuitConfirmation.setContentText("Are you sure you want to quit this game?");
 
             //Wait for user's mouse prompt
