@@ -54,17 +54,17 @@ public class Main extends Application {
         //Create Game Scene
         Group gameRoot = new Group();
         setGameRoot(gameRoot);
-        Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
+        Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(155,252,234));
 
         //Create End Game Scene
         Group endgameRoot = new Group();
-        Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(250, 20, 100, 0.2));
+        Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(155,252,234));
 
         //Create Load Game Scene
         GameScene game = new GameScene();
         game.game(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot);
 
-        //Create and Show Main Menu
+        //Create an instance of Main Menu
         MainMenu gameMainMenu=new MainMenu();
         gameMainMenu.displayMainMenu(primaryStage, gameScene, gameRoot);
 

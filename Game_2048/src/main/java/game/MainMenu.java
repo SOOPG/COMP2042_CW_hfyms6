@@ -19,12 +19,26 @@ import java.util.Scanner;
 
 public class MainMenu extends Main {
 
+    public static MainMenu singleInstance = null;
+
+    //Construct DifficultySelectorMenu scene if there is no instance of it
+    public MainMenu(){
+
+    }
+
+    public static MainMenu getInstance(){
+        if(singleInstance == null)
+            singleInstance= new MainMenu();
+        return singleInstance;
+    }
+
    public void displayMainMenu(Stage primaryStage, Scene gameScene, Group root) {
 
        Group menuRoot = new Group();
        setGameRoot(menuRoot);
        Scene menuScene = new Scene(menuRoot, WIDTH, HEIGHT,Color.rgb(155,252,234));
        setGameScene(menuScene);
+
        Rectangle backgroundOfMenu = new Rectangle(240, 120, Color.rgb(0, 120, 120, 0.2));
        backgroundOfMenu.setX(WIDTH / 2 - 120);
        backgroundOfMenu.setY(180);
@@ -39,18 +53,21 @@ public class MainMenu extends Main {
        Button playButton = new Button("Play");
        playButton.setTextFill(Color.BLACK);
        playButton.setPrefSize(100,30);
-       playButton.relocate(395,450);
+       playButton.relocate(400,450);
        menuRoot.getChildren().add(playButton);
 
        playButton.setOnMouseClicked(event->{
            menuRoot.getChildren().clear();
-           primaryStage.setScene(gameScene);
+
+           //Create an instance of Difficulty Selector Menu
+           DifficultySelectorMenu selectDifficultyMenu=new DifficultySelectorMenu();
+           selectDifficultyMenu.displaySelectorMenu(primaryStage,gameScene,root);
        });
-/*
+
        Button leaderboardButton = new Button("Leaderboard");
        leaderboardButton.setTextFill(Color.BLACK);
        leaderboardButton.setPrefSize(100,30);
-       leaderboardButton.relocate(390,800);
+       leaderboardButton.relocate(400,550);
        menuRoot.getChildren().add(leaderboardButton);
        leaderboardButton.setOnMouseClicked(event->{
 
@@ -60,8 +77,8 @@ public class MainMenu extends Main {
        Button optionButton = new Button("Option");
        optionButton.setTextFill(Color.BLACK);
        optionButton.setPrefSize(100,30);
-       optionButton.relocate(450,800);
-       MenuRoot.getChildren().add(optionButton);
+       optionButton.relocate(400,650);
+       menuRoot.getChildren().add(optionButton);
        optionButton.setOnMouseClicked(event->{
 
            //primaryStage.setScene();
@@ -70,11 +87,12 @@ public class MainMenu extends Main {
        Button exitButton = new Button("Exit");
        exitButton.setTextFill(Color.BLACK);
        exitButton.setPrefSize(100,30);
-       exitButton.relocate(550,800);
+       exitButton.relocate(400,750);
+       menuRoot.getChildren().add(exitButton);
        exitButton.setOnMouseClicked(event->{
            Alert alertQuitConfirmation = new Alert(Alert.AlertType.CONFIRMATION);
            alertQuitConfirmation.setTitle("Quit Application");
-           alertQuitConfirmation.setHeaderText("Confirm Quit");
+           alertQuitConfirmation.setHeaderText("Confirm Exit?");
            alertQuitConfirmation.setContentText("Are you sure you want to quit this game?");
 
            Optional<ButtonType> result = alertQuitConfirmation.showAndWait();
@@ -82,7 +100,7 @@ public class MainMenu extends Main {
                Platform.exit();
            }
        });
-    */
+       //Show the Main Menu
        primaryStage.setScene(menuScene);
     }
 }
