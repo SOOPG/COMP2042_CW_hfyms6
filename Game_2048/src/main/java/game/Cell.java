@@ -51,12 +51,14 @@ public class Cell {
         cell.setColorByNumber(cell.getNumber());
     }
 
-    void adder(Cell cell) {
+    int adder(Cell cell) {
         cell.getTextClass().setText((cell.getNumber() + this.getNumber()) + "");
         textClass.setText("0");
         root.getChildren().remove(textClass);
         cell.setColorByNumber(cell.getNumber());
         setColorByNumber(getNumber());
+        //Return the Summed up Number
+        return (cell.getNumber() + this.getNumber());
     }
 
     void setColorByNumber(int number) {

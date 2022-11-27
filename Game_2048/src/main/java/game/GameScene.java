@@ -26,7 +26,7 @@ class GameScene {
     private Group root;
 
     //Sum of Score of Current Game Session
-    private long score = 0;
+    public long score = 0;
 
     //How many Cells
     static void setN(int number) {
@@ -213,7 +213,7 @@ class GameScene {
 
     private void moveHorizontally(int i, int j, int des, int sign) {
         if (isValidDesH(i, j, des, sign)) {
-            cells[i][j].adder(cells[i][des + sign]);
+            score+=cells[i][j].adder(cells[i][des + sign]);
             cells[i][des].setModify(true);
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);
@@ -231,7 +231,7 @@ class GameScene {
 
     private void moveVertically(int i, int j, int des, int sign) {
         if (isValidDesV(i, j, des, sign)) {
-            cells[i][j].adder(cells[des + sign][j]);
+            score+=cells[i][j].adder(cells[des + sign][j]);
             cells[des][j].setModify(true);
         } else if (des != i) {
             cells[i][j].changeCell(cells[des][j]);
@@ -261,6 +261,8 @@ class GameScene {
     }
 
     private void sumCellNumbersToScore() {
+        //Check if cells add up:
+        //If so
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 score += cells[i][j].getNumber();
@@ -289,10 +291,11 @@ class GameScene {
         scoreText.setFont(Font.font(20));
         scoreText.setText("0");
 
-        // Initially spawns 2 cells
+        // Initially spawns 2 cells of either 2 or 4
         randomFillNumber(1);
         randomFillNumber(1);
 
+        // When a key is pressed, move the cell in tile
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key ->{
                 Platform.runLater(() -> {
                     int haveEmptyCell;
@@ -305,18 +308,21 @@ class GameScene {
                     } else if (key.getCode() == KeyCode.RIGHT) {
                         GameScene.this.moveRight();
                     }
-                    GameScene.this.sumCellNumbersToScore();
-                    scoreText.setText(score + "");
-                    haveEmptyCell = GameScene.this.haveEmptyCell();
-                    if (haveEmptyCell == -1) {
-                        if (GameScene.this.canNotMove()) {
-                            primaryStage.setScene(endGameScene);
 
-                            EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
-                            root.getChildren().clear();
-                            score = 0;
+//
+                    scoreText.setText(score + "");
+
+                    //If there is no empty tile, and cannot move
+                    haveEmptyCell = GameScene.this.haveEmptyCell();
+                    if (haveEmptyCell == -1 && GameScene.this.canNotMove()) {
+                        primaryStage.setScene(endGameScene);
+                        EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
+                        root.getChildren().clear();
+                        score = 0;
                         }
-                    } else if(haveEmptyCell == 1)
+
+                    //If there is empty tile and can move, goto next move and spawns a single tile
+                    else if(haveEmptyCell == 1)
                         GameScene.this.randomFillNumber(2);
                 });
             });
