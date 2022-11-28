@@ -12,12 +12,29 @@ public class Cell {
     private Text textClass;
     private boolean modify = false;
 
-    void setModify(boolean modify) {
-        this.modify = modify;
+    double getX() {
+        return rectangle.getX();
+    }
+    double getY() {
+        return rectangle.getY();
     }
 
     boolean getModify() {
         return modify;
+    }
+    void setModify(boolean modify) {
+        this.modify = modify;
+    }
+
+    private Text getTextClass() {
+        return textClass;
+    }
+    void setTextClass(Text textClass) {
+        this.textClass = textClass;
+    }
+
+    int getNumber() {
+        return Integer.parseInt(textClass.getText());
     }
 
     Cell(double x, double y, double scale, Group root) {
@@ -30,10 +47,6 @@ public class Cell {
         rectangle.setFill(Color.rgb(224, 226, 226, 0.5));
         this.textClass = TextMaker.getSingleInstance().madeText("0", x, y, root);
         root.getChildren().add(rectangle);
-    }
-
-    void setTextClass(Text textClass) {
-        this.textClass = textClass;
     }
 
     void changeCell(Cell cell) {
@@ -51,16 +64,6 @@ public class Cell {
         cell.setColorByNumber(cell.getNumber());
     }
 
-    int adder(Cell cell) {
-        cell.getTextClass().setText((cell.getNumber() + this.getNumber()) + "");
-        textClass.setText("0");
-        root.getChildren().remove(textClass);
-        cell.setColorByNumber(cell.getNumber());
-        setColorByNumber(getNumber());
-        //Return the Summed up Number
-        return (cell.getNumber() + this.getNumber());
-    }
-
     void setColorByNumber(int number) {
         switch (number) {
             case 0 -> rectangle.setFill(Color.rgb(224, 226, 226, 0.5));
@@ -76,23 +79,17 @@ public class Cell {
             case 1024 -> rectangle.setFill(Color.rgb(250, 0, 44, 0.8));
             case 2048 -> rectangle.setFill(Color.rgb(250, 0, 0, 1));
         }
-
     }
 
-    double getX() {
-        return rectangle.getX();
+    long adder(Cell cell) {
+        cell.getTextClass().setText((cell.getNumber() + this.getNumber()) + "");
+        textClass.setText("0");
+        root.getChildren().remove(textClass);
+        cell.setColorByNumber(cell.getNumber());
+        setColorByNumber(getNumber());
+        //Return the Summed up Number
+        return (cell.getNumber() + this.getNumber());
     }
-
-    double getY() {
-        return rectangle.getY();
-    }
-
-    int getNumber() {
-        return Integer.parseInt(textClass.getText());
-    }
-
-    private Text getTextClass() {
-        return textClass;
-    }
-
 }
+
+
