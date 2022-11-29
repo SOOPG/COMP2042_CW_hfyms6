@@ -62,7 +62,7 @@ public class Main extends Application {
 
         //Create Load Game Scene
         GameScene game = new GameScene();
-        game.game(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot);
+        game.game(primaryStage, gameScene, gameRoot, endGameScene, endgameRoot);
 
         //Create an instance of Main Menu
         MainMenu gameMainMenu=new MainMenu();
