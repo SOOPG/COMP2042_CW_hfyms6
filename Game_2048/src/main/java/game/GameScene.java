@@ -10,12 +10,19 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.Random;
+import java.util.Set;
 
 class GameScene {
     private static int HEIGHT = 700;
 
     //Total Number of Cells for 2 axises (X and Y)
-    private static int n = 4;
+    public static int n;
+
+    //How many Cells
+    public static void setN(int number) {
+        n = number;
+        LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
+    }
 
     //Distance btw Cells
     private final static int distanceBetweenCells = 10;
@@ -30,14 +37,12 @@ class GameScene {
 
     public String moveVariable;
 
-    //How many Cells
-    static void setN(int number) {
-        n = number;
-        LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
-    }
-
     static double getLENGTH() {
         return LENGTH;
+    }
+
+    public static void n(int i) {
+        n=i;
     }
 
     // Fills in a number either 2 or 4 each turn in random locations

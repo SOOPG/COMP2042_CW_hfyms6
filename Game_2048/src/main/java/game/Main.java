@@ -50,23 +50,9 @@ public class Main extends Application {
         accountRoot.getChildren().add(backgroundOfMenuForPlay);
         */
 
-
-        //Create Game Scene
-        Group gameRoot = new Group();
-        setGameRoot(gameRoot);
-        Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(155,252,234));
-
-        //Create End Game Scene
-        Group endgameRoot = new Group();
-        Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(155,252,234));
-
-        //Create Load Game Scene
-        GameScene game = new GameScene();
-        game.game(primaryStage, gameScene, gameRoot, endGameScene, endgameRoot);
-
         //Create an instance of Main Menu
         MainMenu gameMainMenu=new MainMenu();
-        gameMainMenu.displayMainMenu(primaryStage, gameScene, gameRoot);
+        gameMainMenu.getInstance().displayMainMenu(primaryStage, gameScene, gameRoot);
 
         //Set Title of Stage as '2048'
         primaryStage.setTitle("2048");

@@ -14,7 +14,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.util.Optional;
 
-public class EndGame {
+public class EndGame extends MainMenu{
 
     //Makes it so EndGame has only 1 instance and initially is null
     private static EndGame singleInstance = null;
@@ -32,6 +32,8 @@ public class EndGame {
 
     //Create new instance of ScoreSaver
     public ScoreSaver scoreSaved=new ScoreSaver();
+    public GameSceneLoader loadGame=new GameSceneLoader();
+    public MainMenu mainMenu=new MainMenu();
 
     public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score){
 
@@ -46,10 +48,19 @@ public class EndGame {
         scoreText.relocate(250,600);
         root.getChildren().add(scoreText);
 
+        Button newGameButton = new Button("New Game");
+        newGameButton.setTextFill(Color.BLACK);
+        newGameButton.setPrefSize(100,30);
+        newGameButton.relocate(240,800);
+        root.getChildren().add(newGameButton);
+        newGameButton.setOnMouseClicked(event -> {
+
+        });
+
         Button saveScoreButton=new Button("Save Score");
         saveScoreButton.setTextFill(Color.BLACK);
         saveScoreButton.setPrefSize(100,30);
-        saveScoreButton.relocate(250,800);
+        saveScoreButton.relocate(356.7,800);
         root.getChildren().add(saveScoreButton);
         //Save score when user clicks on button
         saveScoreButton.setOnMouseClicked(event -> {
@@ -71,11 +82,19 @@ public class EndGame {
                 alertSaved.show();
             }
         });
+        Button menuButton = new Button("Main Menu");
+        menuButton.setTextFill(Color.BLACK);
+        menuButton.setPrefSize(100,30);
+        menuButton.relocate(477.3,800);
+        root.getChildren().add(menuButton);
+        menuButton.setOnMouseClicked(event -> {
+            displayMainMenu(primaryStage, gameScene, root);
+        });
 
         Button quitButton = new Button("Quit");
         quitButton.setTextFill(Color.BLACK);
         quitButton.setPrefSize(100,30);
-        quitButton.relocate(580,800);
+        quitButton.relocate(590,800);
         root.getChildren().add(quitButton);
 
         //Set Quit button taking input as mouse click then perform the event

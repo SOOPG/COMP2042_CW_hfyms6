@@ -10,10 +10,10 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class DifficultySelectorMenu extends MainMenu {
+public class DifficultySelectorMenu extends Main {
 
     //Makes it so DifficultySelectorMenu scene has only 1 instance and initially is null
-    public static DifficultySelectorMenu singleInstance = null;
+    private static DifficultySelectorMenu singleInstance = null;
 
     //Construct DifficultySelectorMenu scene if there is no instance of it
     public DifficultySelectorMenu(){
@@ -50,7 +50,10 @@ public class DifficultySelectorMenu extends MainMenu {
         difficultySelectorMenuRoot.getChildren().add(selectEasyDifficultyButton);
         selectEasyDifficultyButton.setOnMouseClicked(event->{
 
-            primaryStage.setScene(gameScene);
+            GameScene.n(8);
+            GameScene.setN(8);
+            GameSceneLoader loadGame=new GameSceneLoader();
+            loadGame.loadGameScene(primaryStage, gameScene, gameRoot);
         });
 
         Button selectMediumDifficultyButton = new Button("Medium");
@@ -60,7 +63,10 @@ public class DifficultySelectorMenu extends MainMenu {
         difficultySelectorMenuRoot.getChildren().add(selectMediumDifficultyButton);
         selectMediumDifficultyButton.setOnMouseClicked(event->{
 
-            primaryStage.setScene(gameScene);
+            GameScene.n(4);
+            GameScene.setN(4);
+            GameSceneLoader loadGame=new GameSceneLoader();
+            loadGame.loadGameScene(primaryStage, gameScene, gameRoot);
         });
 
         Button selectHardDifficultyButton = new Button("Hard");
@@ -70,9 +76,10 @@ public class DifficultySelectorMenu extends MainMenu {
         difficultySelectorMenuRoot.getChildren().add(selectHardDifficultyButton);
         selectHardDifficultyButton.setOnMouseClicked(event->{
 
-            primaryStage.setScene(gameScene);
+            GameScene.n(3);
+            GameScene.setN(3);
+            GameSceneLoader loadGame=new GameSceneLoader();
+            loadGame.loadGameScene(primaryStage, gameScene, gameRoot);
         });
-        
-
     }
 }

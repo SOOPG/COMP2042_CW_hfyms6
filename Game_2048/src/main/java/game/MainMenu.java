@@ -3,7 +3,6 @@ package game;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -15,7 +14,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.util.Optional;
-import java.util.Scanner;
 
 public class MainMenu extends Main {
 
@@ -61,7 +59,7 @@ public class MainMenu extends Main {
 
            //Create an instance of Difficulty Selector Menu
            DifficultySelectorMenu selectDifficultyMenu=new DifficultySelectorMenu();
-           selectDifficultyMenu.displaySelectorMenu(primaryStage,gameScene,root);
+           selectDifficultyMenu.getInstance().displaySelectorMenu(primaryStage,gameScene,root);
        });
 
        Button leaderboardButton = new Button("Leaderboard");
