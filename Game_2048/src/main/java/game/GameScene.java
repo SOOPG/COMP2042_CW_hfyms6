@@ -303,18 +303,19 @@ class GameScene {
         // When a key is pressed, move the cell in tile
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key ->{
                 Platform.runLater(() -> {
+
                     int haveEmptyCell;
-                    if (key.getCode() == KeyCode.DOWN) {
-                        GameScene.this.moveDown();
-                    } else if (key.getCode() == KeyCode.UP) {
+
+                    if (key.getCode() == KeyCode.UP) {
                         GameScene.this.moveUp();
+                    } else if(key.getCode() == KeyCode.DOWN) {
+                        GameScene.this.moveDown();
                     } else if (key.getCode() == KeyCode.LEFT) {
                         GameScene.this.moveLeft();
                     } else if (key.getCode() == KeyCode.RIGHT) {
                         GameScene.this.moveRight();
                     }
 
-//
                     scoreText.setText(score + "");
 
                     //If there is no empty tile, and cannot move
@@ -326,8 +327,8 @@ class GameScene {
                         score = 0;
                     }
 
-                    //If there is empty tile and can move, goto next move and spawns a single tile
-                    else if(haveEmptyCell == 1)
+                    //If there is empty tile(can move) and key WASD is pressed, spawn a cell
+                    else if(haveEmptyCell == 1 && (key.getCode() == KeyCode.UP || (key.getCode() == KeyCode.DOWN) || (key.getCode() == KeyCode.LEFT) || (key.getCode() == KeyCode.RIGHT)))
                         GameScene.this.randomFillNumber(2);
                 });
         });

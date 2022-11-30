@@ -104,7 +104,7 @@ public class EndGame extends MainMenu{
             //Prompts a Warning Dialog warningOnQuit users to save before quiting the game
             Alert warningOnQuit = new Alert(Alert.AlertType.WARNING);
             warningOnQuit.setTitle("Warning");
-            warningOnQuit.setHeaderText("Quiting This Application Without Saving Will Delete Your High Score");
+            warningOnQuit.setHeaderText("Quiting this application without saving will delete your high score");
 
             //Wait for user's mouse prompt
             Optional<ButtonType> warningSaveResult = warningOnQuit.showAndWait();
@@ -119,14 +119,14 @@ public class EndGame extends MainMenu{
                 //Wait for user's mouse prompt
                 Optional<ButtonType> quitResult = alertQuitConfirmation.showAndWait();
 
+                  /*
+                    If button 'OK' is clicked,
+                    Clear Text and UI in the Scene in Primary Stage
+                    Terminate and Exit the Application
+                 */
                 if (quitResult.get() == ButtonType.OK){
                     root.getChildren().clear();
                     Platform.exit(); //Exit Application
-                /*
-                If button 'OK' is clicked,
-                Clear Text and UI in the Scene in Primary Stage
-                Terminate and Exit the Application
-                 */
                 }
             }
         });
