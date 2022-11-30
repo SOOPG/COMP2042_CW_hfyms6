@@ -89,7 +89,7 @@ public class EndGame extends MainMenu{
         menuButton.relocate(478,800);
         root.getChildren().add(menuButton);
         menuButton.setOnMouseClicked(event -> {
-            backToMainMenu.getInstance().displayMainMenu(primaryStage,gameScene,gameRoot);
+            backToMainMenu.getInstance().displayMainMenu(primaryStage);
         });
 
         Button quitButton = new Button("Quit");
@@ -126,7 +126,8 @@ public class EndGame extends MainMenu{
                  */
                 if (quitResult.get() == ButtonType.OK){
                     root.getChildren().clear();
-                    Platform.exit(); //Exit Application
+                    //Exit Application
+                    Platform.exit();
                 }
             }
         });

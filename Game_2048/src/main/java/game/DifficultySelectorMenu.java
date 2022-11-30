@@ -26,7 +26,7 @@ public class DifficultySelectorMenu extends Main {
         return singleInstance;
     }
 
-    public void displaySelectorMenu(Stage primaryStage){
+    public void displaySelectorMenu(Stage primaryStage,Scene menuScene){
 
         Group difficultySelectorMenuRoot = new Group();
         setGameRoot(difficultySelectorMenuRoot);
@@ -80,6 +80,17 @@ public class DifficultySelectorMenu extends Main {
             GameSceneLoader loadGame=new GameSceneLoader();
             loadGame.getInstance().loadGameScene(primaryStage);
         });
+
+        Button backToMainMenuButton = new Button("Back");
+        backToMainMenuButton.setTextFill(Color.BLACK);
+        backToMainMenuButton.setPrefSize(100,30);
+        backToMainMenuButton.relocate(400,650);
+        difficultySelectorMenuRoot.getChildren().add(backToMainMenuButton);
+        backToMainMenuButton.setOnMouseClicked(event-> {
+
+            primaryStage.setScene(menuScene);
+        });
+
         //Show Difficulty Selector Menu
         primaryStage.setScene(difficultySelectorMenuScene);
     }

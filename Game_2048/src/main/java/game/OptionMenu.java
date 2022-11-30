@@ -24,9 +24,7 @@ public class OptionMenu extends Main{
         return singleInstance;
     }
 
-    public void displayOptionMenu(Stage primaryStage){
-
-        String colourTheme="default";
+    public void displayOptionMenu(Stage primaryStage,Scene menuScene){
 
         Group optionMenuRoot = new Group();
         setGameRoot(optionMenuRoot);
@@ -66,8 +64,16 @@ public class OptionMenu extends Main{
 
         });
 
+        Button backToMainMenuButton = new Button("Back");
+        backToMainMenuButton.setTextFill(Color.BLACK);
+        backToMainMenuButton.setPrefSize(100,30);
+        backToMainMenuButton.relocate(400,650);
+        optionMenuRoot.getChildren().add(backToMainMenuButton);
+        backToMainMenuButton.setOnMouseClicked(event-> {
+
+            primaryStage.setScene(menuScene);
+        });
 
         primaryStage.setScene(optionMenuScene);
     }
-
 }

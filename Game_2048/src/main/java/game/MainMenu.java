@@ -30,7 +30,7 @@ public class MainMenu extends Main {
         return singleInstance;
     }
 
-   public void displayMainMenu(Stage primaryStage, Scene gameScene, Group root) {
+   public void displayMainMenu(Stage primaryStage) {
 
        Group menuRoot = new Group();
        setGameRoot(menuRoot);
@@ -55,11 +55,9 @@ public class MainMenu extends Main {
        menuRoot.getChildren().add(playButton);
 
        playButton.setOnMouseClicked(event->{
-           menuRoot.getChildren().clear();
-
            //Create an instance of Difficulty Selector Menu
            DifficultySelectorMenu selectDifficultyMenu=new DifficultySelectorMenu();
-           selectDifficultyMenu.getInstance().displaySelectorMenu(primaryStage);
+           selectDifficultyMenu.getInstance().displaySelectorMenu(primaryStage,menuScene);
        });
 
        Button leaderboardButton = new Button("Leaderboard");
@@ -80,7 +78,7 @@ public class MainMenu extends Main {
        optionButton.setOnMouseClicked(event->{
 
            OptionMenu GameSettings=new OptionMenu();
-           GameSettings.getInstance().displayOptionMenu(primaryStage);
+           GameSettings.getInstance().displayOptionMenu(primaryStage,menuScene);
        });
 
        Button exitButton = new Button("Exit");

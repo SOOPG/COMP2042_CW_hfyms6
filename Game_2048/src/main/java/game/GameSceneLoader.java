@@ -21,6 +21,7 @@ public class GameSceneLoader extends Main{
         return singleInstance;
     }
     public void loadGameScene(Stage primaryStage){
+        
         //Create Game Scene
         Group gameplayRoot = new Group();
         setGameRoot(gameplayRoot);

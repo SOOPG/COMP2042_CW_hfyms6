@@ -52,7 +52,7 @@ public class Main extends Application {
 
         //Create an instance of Main Menu
         MainMenu gameMainMenu=new MainMenu();
-        gameMainMenu.getInstance().displayMainMenu(primaryStage, gameScene, gameRoot);
+        gameMainMenu.getInstance().displayMainMenu(primaryStage);
 
         //Set Title of Stage as '2048'
         primaryStage.setTitle("2048");
