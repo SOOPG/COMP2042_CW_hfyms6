@@ -54,7 +54,7 @@ public class EndGame extends MainMenu{
         newGameButton.relocate(240,800);
         root.getChildren().add(newGameButton);
         newGameButton.setOnMouseClicked(event -> {
-            backToGame.getInstance().loadGameScene(primaryStage, gameScene, gameRoot);
+            backToGame.getInstance().loadGameScene(primaryStage);
         });
 
         Button saveScoreButton=new Button("Save Score");
@@ -86,7 +86,7 @@ public class EndGame extends MainMenu{
         Button menuButton = new Button("Main Menu");
         menuButton.setTextFill(Color.BLACK);
         menuButton.setPrefSize(100,30);
-        menuButton.relocate(477.3,800);
+        menuButton.relocate(478,800);
         root.getChildren().add(menuButton);
         menuButton.setOnMouseClicked(event -> {
             backToMainMenu.getInstance().displayMainMenu(primaryStage,gameScene,gameRoot);

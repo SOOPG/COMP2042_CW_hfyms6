@@ -59,7 +59,7 @@ public class MainMenu extends Main {
 
            //Create an instance of Difficulty Selector Menu
            DifficultySelectorMenu selectDifficultyMenu=new DifficultySelectorMenu();
-           selectDifficultyMenu.getInstance().displaySelectorMenu(primaryStage,gameScene,root);
+           selectDifficultyMenu.getInstance().displaySelectorMenu(primaryStage);
        });
 
        Button leaderboardButton = new Button("Leaderboard");
@@ -79,7 +79,8 @@ public class MainMenu extends Main {
        menuRoot.getChildren().add(optionButton);
        optionButton.setOnMouseClicked(event->{
 
-           //primaryStage.setScene();
+           OptionMenu GameSettings=new OptionMenu();
+           GameSettings.getInstance().displayOptionMenu(primaryStage);
        });
 
        Button exitButton = new Button("Exit");

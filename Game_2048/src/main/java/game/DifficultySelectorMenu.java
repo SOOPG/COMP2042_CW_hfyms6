@@ -26,7 +26,7 @@ public class DifficultySelectorMenu extends Main {
         return singleInstance;
     }
 
-    public void displaySelectorMenu(Stage primaryStage, Scene gameScene, Group root){
+    public void displaySelectorMenu(Stage primaryStage){
 
         Group difficultySelectorMenuRoot = new Group();
         setGameRoot(difficultySelectorMenuRoot);
@@ -38,10 +38,9 @@ public class DifficultySelectorMenu extends Main {
 
         Text selectDifficultyText = new Text("Select Difficulty:");
         selectDifficultyText.setFill(Color.BLACK);
-        selectDifficultyText.setFont(Font.font("Nirmala UI", FontWeight.BOLD,40));
-        selectDifficultyText.relocate(315,185);
+        selectDifficultyText.setFont(Font.font("Nirmala UI", FontWeight.BOLD,50));
+        selectDifficultyText.relocate(275,185);
         difficultySelectorMenuRoot.getChildren().add(selectDifficultyText);
-        primaryStage.setScene(difficultySelectorMenuScene);
 
         Button selectEasyDifficultyButton = new Button("Easy");
         selectEasyDifficultyButton.setTextFill(Color.BLACK);
@@ -53,7 +52,7 @@ public class DifficultySelectorMenu extends Main {
             GameScene.n(8);
             GameScene.setN(8);
             GameSceneLoader loadGame=new GameSceneLoader();
-            loadGame.getInstance().loadGameScene(primaryStage, gameScene, gameRoot);
+            loadGame.getInstance().loadGameScene(primaryStage);
         });
 
         Button selectMediumDifficultyButton = new Button("Medium");
@@ -66,7 +65,7 @@ public class DifficultySelectorMenu extends Main {
             GameScene.n(4);
             GameScene.setN(4);
             GameSceneLoader loadGame=new GameSceneLoader();
-            loadGame.getInstance().loadGameScene(primaryStage, gameScene, gameRoot);
+            loadGame.getInstance().loadGameScene(primaryStage);
         });
 
         Button selectHardDifficultyButton = new Button("Hard");
@@ -79,7 +78,9 @@ public class DifficultySelectorMenu extends Main {
             GameScene.n(3);
             GameScene.setN(3);
             GameSceneLoader loadGame=new GameSceneLoader();
-            loadGame.getInstance().loadGameScene(primaryStage, gameScene, gameRoot);
+            loadGame.getInstance().loadGameScene(primaryStage);
         });
+        //Show Difficulty Selector Menu
+        primaryStage.setScene(difficultySelectorMenuScene);
     }
 }
