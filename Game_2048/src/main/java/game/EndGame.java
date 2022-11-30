@@ -30,12 +30,12 @@ public class EndGame extends MainMenu{
         return singleInstance;
     }
 
-    //Create new instance of ScoreSaver
+    //Create new instances and check if its null
     public ScoreSaver scoreSaved=new ScoreSaver();
-    public GameSceneLoader loadGame=new GameSceneLoader();
-    public MainMenu mainMenu=new MainMenu();
+    public MainMenu backToMainMenu=new MainMenu();
+    public GameSceneLoader backToGame=new GameSceneLoader();
 
-    public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score){
+    public void endGameShow(Stage primaryStage, Scene gameScene, Group root, long score){
 
         Text gameOverText = new Text("GAME OVER");
         gameOverText.setFont(Font.font(80));
@@ -54,7 +54,7 @@ public class EndGame extends MainMenu{
         newGameButton.relocate(240,800);
         root.getChildren().add(newGameButton);
         newGameButton.setOnMouseClicked(event -> {
-
+            backToGame.getInstance().loadGameScene(primaryStage, gameScene, gameRoot);
         });
 
         Button saveScoreButton=new Button("Save Score");
@@ -82,13 +82,14 @@ public class EndGame extends MainMenu{
                 alertSaved.show();
             }
         });
+
         Button menuButton = new Button("Main Menu");
         menuButton.setTextFill(Color.BLACK);
         menuButton.setPrefSize(100,30);
         menuButton.relocate(477.3,800);
         root.getChildren().add(menuButton);
         menuButton.setOnMouseClicked(event -> {
-            displayMainMenu(primaryStage, gameScene, root);
+            backToMainMenu.getInstance().displayMainMenu(primaryStage,gameScene,gameRoot);
         });
 
         Button quitButton = new Button("Quit");
@@ -100,40 +101,33 @@ public class EndGame extends MainMenu{
         //Set Quit button taking input as mouse click then perform the event
         quitButton.setOnMouseClicked(event -> {
 
-            /*Prompts a Warning Dialog warning users to save before quiting the game
-            Alert warning = new Alert(Alert.AlertType.WARNING);
-            warning.setTitle("Warning");
-            warning.setHeaderText("Quiting This Application Without Saving Will Delete Your High Score");
+            //Prompts a Warning Dialog warningOnQuit users to save before quiting the game
+            Alert warningOnQuit = new Alert(Alert.AlertType.WARNING);
+            warningOnQuit.setTitle("Warning");
+            warningOnQuit.setHeaderText("Quiting This Application Without Saving Will Delete Your High Score");
 
             //Wait for user's mouse prompt
-            Optional<ButtonType> warningResult = warning.showAndWait();
+            Optional<ButtonType> warningSaveResult = warningOnQuit.showAndWait();
 
-            if (result.get() == ButtonType.OK){
-                root.getChildren().clear();
-                /*
-                If button 'OK' is clicked,
-                Clear Text and UI in the Scene in Primary Stage
-                Go to
-            }
-            */
+            if (warningSaveResult.get() == ButtonType.OK) {
+                //Prompts a Confirming Dialog asking users to confirm in quiting the game
+                Alert alertQuitConfirmation = new Alert(Alert.AlertType.CONFIRMATION);
+                alertQuitConfirmation.setTitle("Quit");
+                alertQuitConfirmation.setHeaderText("Confirm Exit?");
+                alertQuitConfirmation.setContentText("Are you sure you want to quit this game?");
 
-            //Prompts a Confirming Dialog asking users to confirm in quiting the game
-            Alert alertQuitConfirmation = new Alert(Alert.AlertType.CONFIRMATION);
-            alertQuitConfirmation.setTitle("Quit");
-            alertQuitConfirmation.setHeaderText("Confirm Exit?");
-            alertQuitConfirmation.setContentText("Are you sure you want to quit this game?");
+                //Wait for user's mouse prompt
+                Optional<ButtonType> quitResult = alertQuitConfirmation.showAndWait();
 
-            //Wait for user's mouse prompt
-            Optional<ButtonType> result = alertQuitConfirmation.showAndWait();
-
-            if (result.get() == ButtonType.OK){
-                root.getChildren().clear();
-                Platform.exit(); //Exit Application
+                if (quitResult.get() == ButtonType.OK){
+                    root.getChildren().clear();
+                    Platform.exit(); //Exit Application
                 /*
                 If button 'OK' is clicked,
                 Clear Text and UI in the Scene in Primary Stage
                 Terminate and Exit the Application
                  */
+                }
             }
         });
     }

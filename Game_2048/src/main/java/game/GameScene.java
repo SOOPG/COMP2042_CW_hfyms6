@@ -321,7 +321,7 @@ class GameScene {
                     haveEmptyCell = GameScene.this.haveEmptyCell();
                     if (haveEmptyCell == -1 && GameScene.this.canNotMove()) {
                         primaryStage.setScene(endGameScene);
-                        EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
+                        EndGame.getInstance().endGameShow(primaryStage, endGameScene, endGameRoot, score);
                         root.getChildren().clear();
                         score = 0;
                     }

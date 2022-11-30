@@ -53,7 +53,7 @@ public class DifficultySelectorMenu extends Main {
             GameScene.n(8);
             GameScene.setN(8);
             GameSceneLoader loadGame=new GameSceneLoader();
-            loadGame.loadGameScene(primaryStage, gameScene, gameRoot);
+            loadGame.getInstance().loadGameScene(primaryStage, gameScene, gameRoot);
         });
 
         Button selectMediumDifficultyButton = new Button("Medium");
@@ -66,7 +66,7 @@ public class DifficultySelectorMenu extends Main {
             GameScene.n(4);
             GameScene.setN(4);
             GameSceneLoader loadGame=new GameSceneLoader();
-            loadGame.loadGameScene(primaryStage, gameScene, gameRoot);
+            loadGame.getInstance().loadGameScene(primaryStage, gameScene, gameRoot);
         });
 
         Button selectHardDifficultyButton = new Button("Hard");
@@ -79,7 +79,7 @@ public class DifficultySelectorMenu extends Main {
             GameScene.n(3);
             GameScene.setN(3);
             GameSceneLoader loadGame=new GameSceneLoader();
-            loadGame.loadGameScene(primaryStage, gameScene, gameRoot);
+            loadGame.getInstance().loadGameScene(primaryStage, gameScene, gameRoot);
         });
     }
 }
