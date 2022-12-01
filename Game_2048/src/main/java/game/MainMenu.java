@@ -15,7 +15,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.Optional;
 
-public class MainMenu extends Main {
+public class MainMenu extends Main{
 
     public static MainMenu singleInstance = null;
 
@@ -32,39 +32,39 @@ public class MainMenu extends Main {
 
    public void displayMainMenu(Stage primaryStage) {
 
-       Group menuRoot = new Group();
-       setGameRoot(menuRoot);
-       Scene menuScene = new Scene(menuRoot, WIDTH, HEIGHT,Color.rgb(155,252,234));
-       setGameScene(menuScene);
+       Group mainMenuRoot = new Group();
+       setGameRoot(mainMenuRoot);
+       Scene mainMenuScene = new Scene(mainMenuRoot, WIDTH, HEIGHT,Color.rgb(155,252,234));
+       setGameScene(mainMenuScene);
 
        Rectangle backgroundOfMenu = new Rectangle(240, 120, Color.rgb(0, 120, 120, 0.2));
        backgroundOfMenu.setX(WIDTH / 2 - 120);
        backgroundOfMenu.setY(180);
-       menuRoot.getChildren().add(backgroundOfMenu);
+       mainMenuRoot.getChildren().add(backgroundOfMenu);
 
        Text gameTitle = new Text("2048");
        gameTitle.setFill(Color.BLACK);
        gameTitle.setFont(Font.font("Nirmala UI", FontWeight.BOLD,80));
        gameTitle.relocate(360,185);
-       menuRoot.getChildren().add(gameTitle);
+       mainMenuRoot.getChildren().add(gameTitle);
 
        Button playButton = new Button("Play");
        playButton.setTextFill(Color.BLACK);
        playButton.setPrefSize(100,30);
        playButton.relocate(400,450);
-       menuRoot.getChildren().add(playButton);
+       mainMenuRoot.getChildren().add(playButton);
 
        playButton.setOnMouseClicked(event->{
            //Create an instance of Difficulty Selector Menu
            DifficultySelectorMenu selectDifficultyMenu=new DifficultySelectorMenu();
-           selectDifficultyMenu.getInstance().displaySelectorMenu(primaryStage,menuScene);
+           selectDifficultyMenu.getInstance().displaySelectorMenu(primaryStage,mainMenuScene);
        });
 
        Button leaderboardButton = new Button("Leaderboard");
        leaderboardButton.setTextFill(Color.BLACK);
        leaderboardButton.setPrefSize(100,30);
        leaderboardButton.relocate(400,550);
-       menuRoot.getChildren().add(leaderboardButton);
+       mainMenuRoot.getChildren().add(leaderboardButton);
        leaderboardButton.setOnMouseClicked(event->{
 
             //primaryStage.setScene();
@@ -74,18 +74,18 @@ public class MainMenu extends Main {
        optionButton.setTextFill(Color.BLACK);
        optionButton.setPrefSize(100,30);
        optionButton.relocate(400,650);
-       menuRoot.getChildren().add(optionButton);
+       mainMenuRoot.getChildren().add(optionButton);
        optionButton.setOnMouseClicked(event->{
 
            OptionMenu GameSettings=new OptionMenu();
-           GameSettings.getInstance().displayOptionMenu(primaryStage,menuScene);
+           GameSettings.getInstance().displayOptionMenu(primaryStage,mainMenuScene);
        });
 
        Button exitButton = new Button("Exit");
        exitButton.setTextFill(Color.BLACK);
        exitButton.setPrefSize(100,30);
        exitButton.relocate(400,750);
-       menuRoot.getChildren().add(exitButton);
+       mainMenuRoot.getChildren().add(exitButton);
        exitButton.setOnMouseClicked(event->{
            Alert alertQuitConfirmation = new Alert(Alert.AlertType.CONFIRMATION);
            alertQuitConfirmation.setTitle("Quit Application");
@@ -98,6 +98,6 @@ public class MainMenu extends Main {
            }
        });
        //Show the Main Menu
-       primaryStage.setScene(menuScene);
+       primaryStage.setScene(mainMenuScene);
     }
 }

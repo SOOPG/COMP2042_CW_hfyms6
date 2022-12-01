@@ -10,39 +10,35 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.Random;
-import java.util.Set;
 
 class GameScene {
     private static int HEIGHT = 700;
 
     //Total Number of Cells for 2 axises (X and Y)
-    public static int n;
+    public static int grid;
 
     //How many Cells
-    public static void setN(int number) {
-        n = number;
-        LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
+    public static void setGrid(int number) {
+        grid = number;
+        LENGTH = (HEIGHT - ((grid + 1) * distanceBetweenCells)) / (double) grid;
     }
 
     //Distance btw Cells
     private final static int distanceBetweenCells = 10;
 
-    private static double LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
+    private static double LENGTH = (HEIGHT - ((grid + 1) * distanceBetweenCells)) / (double) grid;
     private TextMaker textMaker = TextMaker.getSingleInstance();
-    private Cell[][] cells = new Cell[n][n];
+    private Cell[][] cells = new Cell[grid][grid];
     private Group root;
 
     //Sum of Score of Current Game Session
     public long score = 0;
 
+    //Parameter to check what type of movement it is to add score
     public String moveVariable;
 
     static double getLENGTH() {
         return LENGTH;
-    }
-
-    public static void n(int i) {
-        n=i;
     }
 
     // Fills in a number either 2 or 4 each turn in random locations
@@ -50,16 +46,16 @@ class GameScene {
     private void randomFillNumber(int turn) {
 
         // why a,b
-        Cell[][] emptyCells = new Cell[n][n];
+        Cell[][] emptyCells = new Cell[grid][grid];
         int a = 0;
         int b = 0;
         int aForBound=0,bForBound=0;
         outer:
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+        for (int i = 0; i < grid; i++) {
+            for (int j = 0; j < grid; j++) {
                 if (cells[i][j].getNumber() == 0) {
                     emptyCells[a][b] = cells[i][j];
-                    if (b < n-1) {
+                    if (b < grid -1) {
                         bForBound=b;
                         b++;
 
@@ -67,7 +63,7 @@ class GameScene {
                         aForBound=a;
                         a++;
                         b = 0;
-                        if(a==n)
+                        if(a== grid)
                             break outer;
                     }
                 }
@@ -97,8 +93,8 @@ class GameScene {
     }
     //Check if game scene has empty cell
     private int  haveEmptyCell() {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+        for (int i = 0; i < grid; i++) {
+            for (int j = 0; j < grid; j++) {
                 if (cells[i][j].getNumber() == 0)
                     return 1;
                 if(cells[i][j].getNumber() == 2048)
@@ -110,6 +106,31 @@ class GameScene {
 
     private int passDestination(int i, int j, char direct) {
         int coordinate = j;
+        coordinate = i;
+        if (direct == 'u') {
+            for (int k = i - 1; k >= 0; k--) {
+                if (cells[k][j].getNumber() != 0) {
+                    coordinate = k + 1;
+                    break;
+                } else if (k == 0) {
+                    coordinate = 0;
+                }
+            }
+            return coordinate;
+        }
+        coordinate = i;
+        if (direct == 'd') {
+            for (int k = i + 1; k <= grid - 1; k++) {
+                if (cells[k][j].getNumber() != 0) {
+                    coordinate = k - 1;
+                    break;
+
+                } else if (k == grid - 1) {
+                    coordinate = grid - 1;
+                }
+            }
+            return coordinate;
+        }
         if (direct == 'l') {
             for (int k = j - 1; k >= 0; k--) {
                 if (cells[i][k].getNumber() != 0) {
@@ -123,37 +144,12 @@ class GameScene {
         }
         coordinate = j;
         if (direct == 'r') {
-            for (int k = j + 1; k <= n - 1; k++) {
+            for (int k = j + 1; k <= grid - 1; k++) {
                 if (cells[i][k].getNumber() != 0) {
                     coordinate = k - 1;
                     break;
-                } else if (k == n - 1) {
-                    coordinate = n - 1;
-                }
-            }
-            return coordinate;
-        }
-        coordinate = i;
-        if (direct == 'd') {
-            for (int k = i + 1; k <= n - 1; k++) {
-                if (cells[k][j].getNumber() != 0) {
-                    coordinate = k - 1;
-                    break;
-
-                } else if (k == n - 1) {
-                    coordinate = n - 1;
-                }
-            }
-            return coordinate;
-        }
-        coordinate = i;
-        if (direct == 'u') {
-            for (int k = i - 1; k >= 0; k--) {
-                if (cells[k][j].getNumber() != 0) {
-                    coordinate = k + 1;
-                    break;
-                } else if (k == 0) {
-                    coordinate = 0;
+                } else if (k == grid - 1) {
+                    coordinate = grid - 1;
                 }
             }
             return coordinate;
@@ -162,36 +158,36 @@ class GameScene {
     }
 
     private void moveUp() {
-        for (int j = 0; j < n; j++) {
-            for (int i = 1; i < n; i++) {
-                moveVertically(i, j, passDestination(i, j, 'u'), -1,"vertical");
+        for (int j = 0; j < grid; j++) {
+            for (int i = 1; i < grid; i++) {
+                moveVertically(i, j, passDestination(i, j, 'u'), -1);
             }
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < grid; i++) {
                 cells[i][j].setModify(false);
             }
         }
 
     }
     private void moveDown() {
-        for (int j = 0; j < n; j++) {
-            for (int i = n - 1; i >= 0; i--) {
-                moveVertically(i, j, passDestination(i, j, 'd'), 1,"vertical");
+        for (int j = 0; j < grid; j++) {
+            for (int i = grid - 1; i >= 0; i--) {
+                moveVertically(i, j, passDestination(i, j, 'd'), 1);
             }
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < grid; i++) {
                 cells[i][j].setModify(false);
             }
         }
 
     }
     private boolean isValidDesV(int i, int j, int des, int sign) {
-        if (des + sign < n && des + sign >= 0)
+        if (des + sign < grid && des + sign >= 0)
             if (cells[des + sign][j].getNumber() == cells[i][j].getNumber() && !cells[des + sign][j].getModify()
                     && cells[des + sign][j].getNumber() != 0) {
                 return true;
             }
         return false;
     }
-    private void moveVertically(int i, int j, int des, int sign,String moveVariable) {
+    private void moveVertically(int i, int j, int des, int sign) {
         if (isValidDesV(i, j, des, sign)) {
             moveVariable="vertical";
             sumCellNumbersToScore(i,j,des,sign,moveVariable);
@@ -201,27 +197,27 @@ class GameScene {
     }
 
     private void moveLeft() {
-        for (int i = 0; i < n; i++) {
-            for (int j = 1; j < n; j++) {
-                moveHorizontally(i, j, passDestination(i, j, 'l'), -1,"horizontal");
+        for (int i = 0; i < grid; i++) {
+            for (int j = 1; j < grid; j++) {
+                moveHorizontally(i, j, passDestination(i, j, 'l'), -1);
             }
-            for (int j = 0; j < n; j++) {
+            for (int j = 0; j < grid; j++) {
                 cells[i][j].setModify(false);
             }
         }
     }
     private void moveRight() {
-        for (int i = 0; i < n; i++) {
-            for (int j = n - 1; j >= 0; j--) {
-                moveHorizontally(i, j, passDestination(i, j, 'r'), 1,"horizontal");
+        for (int i = 0; i < grid; i++) {
+            for (int j = grid - 1; j >= 0; j--) {
+                moveHorizontally(i, j, passDestination(i, j, 'r'), 1);
             }
-            for (int j = 0; j < n; j++) {
+            for (int j = 0; j < grid; j++) {
                 cells[i][j].setModify(false);
             }
         }
     }
     private boolean isValidDesH(int i, int j, int des, int sign) {
-        if (des + sign < n && des + sign >= 0) {
+        if (des + sign < grid && des + sign >= 0) {
             if (cells[i][des + sign].getNumber() == cells[i][j].getNumber() && !cells[i][des + sign].getModify()
                     && cells[i][des + sign].getNumber() != 0) {
                 return true;
@@ -229,7 +225,7 @@ class GameScene {
         }
         return false;
     }
-    private void moveHorizontally(int i, int j, int des, int sign, String moveVariable) {
+    private void moveHorizontally(int i, int j, int des, int sign) {
         if (isValidDesH(i, j, des, sign)) {
             moveVariable="horizontal";
             sumCellNumbersToScore(i,j,des,sign,moveVariable);
@@ -240,7 +236,7 @@ class GameScene {
 
     //If it has same number near
     private boolean haveSameNumberNearly(int i, int j) {
-        if (i < n - 1 && j < n - 1) {
+        if (i < grid - 1 && j < grid - 1) {
             if (cells[i + 1][j].getNumber() == cells[i][j].getNumber())
                 return true;
             if (cells[i][j + 1].getNumber() == cells[i][j].getNumber())
@@ -250,8 +246,8 @@ class GameScene {
     }
     //If no empty cells set condition to end
     private boolean canNotMove() {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+        for (int i = 0; i < grid; i++) {
+            for (int j = 0; j < grid; j++) {
                 if (haveSameNumberNearly(i, j)) {
                     return false;
                 }
@@ -265,7 +261,7 @@ class GameScene {
 
         //if move vertically
         if (moveVariable.equals("vertical")){
-            score+=cells[i][j].adder(cells[des + sign][j]);
+            score +=cells[i][j].adder(cells[des + sign][j]);
             cells[des][j].setModify(true);
         }
         //if move horizontally
@@ -277,8 +273,8 @@ class GameScene {
 
     void game(Stage primaryStage,Scene gameScene, Group root, Scene endGameScene, Group endGameRoot) {
         this.root = root;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+        for (int i = 0; i < grid; i++) {
+            for (int j = 0; j < grid; j++) {
                 cells[i][j] = new Cell((j) * LENGTH + (j + 1) * distanceBetweenCells,
                         (i) * LENGTH + (i + 1) * distanceBetweenCells, LENGTH, root);
             }
@@ -327,7 +323,7 @@ class GameScene {
                         score = 0;
                     }
 
-                    //If there is empty tile(can move) and key WASD is pressed, spawn a cell
+                    //If there is empty tile(can move) and arrow key is pressed, spawn a cell
                     else if(haveEmptyCell == 1 && (key.getCode() == KeyCode.UP || (key.getCode() == KeyCode.DOWN) || (key.getCode() == KeyCode.LEFT) || (key.getCode() == KeyCode.RIGHT)))
                         GameScene.this.randomFillNumber(2);
                 });

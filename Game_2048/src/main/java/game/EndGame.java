@@ -1,20 +1,18 @@
 package game;
 
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.util.Optional;
 
-public class EndGame extends MainMenu{
+public class EndGame{
 
     //Makes it so EndGame has only 1 instance and initially is null
     private static EndGame singleInstance = null;
@@ -33,7 +31,7 @@ public class EndGame extends MainMenu{
     //Create new instances and check if its null
     public ScoreSaver scoreSaved=new ScoreSaver();
     public MainMenu backToMainMenu=new MainMenu();
-    public GameSceneLoader backToGame=new GameSceneLoader();
+    public GameSceneLoader startNewGame =new GameSceneLoader();
 
     public void endGameShow(Stage primaryStage, Scene gameScene, Group root, long score){
 
@@ -54,7 +52,7 @@ public class EndGame extends MainMenu{
         newGameButton.relocate(240,800);
         root.getChildren().add(newGameButton);
         newGameButton.setOnMouseClicked(event -> {
-            backToGame.getInstance().loadGameScene(primaryStage);
+            startNewGame.getInstance().loadGameScene(primaryStage);
         });
 
         Button saveScoreButton=new Button("Save Score");
