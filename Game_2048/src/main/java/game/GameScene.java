@@ -16,6 +16,7 @@ class GameScene {
 
     //Total Number of Cells for 2 axises (X and Y)
     public static int grid;
+    private static boolean isMoved = false;
 
     //How many Cells
     public static void setGrid(int number) {
@@ -193,6 +194,8 @@ class GameScene {
             sumCellNumbersToScore(i,j,des,sign,moveVariable);
         } else if (des != i) {
             cells[i][j].changeCell(cells[des][j]);
+            if (cells[des][j].getNumber() != 0)
+                isMoved = true;
         }
     }
 
@@ -231,6 +234,8 @@ class GameScene {
             sumCellNumbersToScore(i,j,des,sign,moveVariable);
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);
+            if (cells[i][des].getNumber() != 0)
+                isMoved = true;
         }
     }
 
@@ -262,13 +267,14 @@ class GameScene {
         //if move vertically
         if (moveVariable.equals("vertical")){
             score +=cells[i][j].adder(cells[des + sign][j]);
-            cells[des][j].setModify(true);
+            cells[des+sign][j].setModify(true);
         }
         //if move horizontally
         else if (moveVariable.equals("horizontal")) {
             score += cells[i][j].adder(cells[i][des + sign]);
-            cells[i][des].setModify(true);
+            cells[i][des+sign].setModify(true);
         }
+        isMoved = true;
     }
 
     void game(Stage primaryStage,Scene gameScene, Group root, Scene endGameScene, Group endGameRoot) {
@@ -324,8 +330,10 @@ class GameScene {
                     }
 
                     //If there is empty tile(can move) and arrow key is pressed, spawn a cell
-                    else if(haveEmptyCell == 1 && (key.getCode() == KeyCode.UP || (key.getCode() == KeyCode.DOWN) || (key.getCode() == KeyCode.LEFT) || (key.getCode() == KeyCode.RIGHT)))
+                    else if(haveEmptyCell == 1 && (key.getCode() == KeyCode.UP || (key.getCode() == KeyCode.DOWN) || (key.getCode() == KeyCode.LEFT) || (key.getCode() == KeyCode.RIGHT)) && isMoved) {
                         GameScene.this.randomFillNumber(2);
+                        isMoved = false;
+                    }
                 });
         });
     }
