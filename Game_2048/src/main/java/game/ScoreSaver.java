@@ -9,6 +9,50 @@ import javafx.scene.control.Alert;
 
 public class ScoreSaver {
 
+    public void saveScoreButtonClicked(long score, String playerName){
+
+        //Create a file for storing score and name
+        try {
+            File savedHighScore = new File("PlayerInfoList.txt");
+            if (savedHighScore.createNewFile()) {
+                System.out.println("File created: " + savedHighScore.getName());
+
+                //Calls method to write the score into the file
+                setPlayerInfo(score,playerName);
+            }
+
+            else {
+                //Has an existing save file, need to check if got scores....
+                System.out.println("File already exists.");
+
+                //Calls method to write the score into the file
+                setPlayerInfo(score,playerName);
+                System.out.println("Successfully override score.");
+            }
+
+            //Cannot save gives out a warning message to user error about saving high score
+        } catch (IOException e) {
+            Alert saveError = new Alert(Alert.AlertType.WARNING);
+            saveError.setTitle("Error");
+            saveError.setHeaderText("Error While Saving Score!");
+        }
+
+    }
+
+    public void setPlayerInfo(long score, String playerName){
+        try {
+            FileWriter scoreWriter = new FileWriter("PlayerInfoList.txt");
+            scoreWriter.write("" + score+" "+playerName);
+            System.out.println("" + score+" "+playerName);
+            scoreWriter.close();
+            System.out.println("Successfully wrote score.");
+
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
     /*Get Score and Name
     public void getPlayerInfo(){
         try {
@@ -27,46 +71,5 @@ public class ScoreSaver {
 */
 
     //Write High Score and Name
-    public void setPlayerInfo(long score){
-        try {
-            FileWriter scoreWriter = new FileWriter("PlayerInfoList.txt");
-            scoreWriter.write("" + score);
-            scoreWriter.close();
-            System.out.println("Successfully wrote score.");
 
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
-
-    public void saveScoreButtonClicked(long score){
-
-        //Create a file for storing score and name
-        try {
-            File savedHighScore = new File("PlayerInfoList.txt");
-            if (savedHighScore.createNewFile()) {
-                System.out.println("File created: " + savedHighScore.getName());
-
-                //Calls method to write the score into the file
-                setPlayerInfo(score);
-            }
-
-            else {
-                //Has an existing save file, need to check if got scores....
-
-                System.out.println("File already exists.");
-                //Calls method to write the score into the file
-                setPlayerInfo(score);
-                System.out.println("Successfully override score.");
-            }
-
-            //Cannot save gives out a warning message to user error about saving high score
-        } catch (IOException e) {
-            Alert saveError = new Alert(Alert.AlertType.WARNING);
-            saveError.setTitle("Error");
-            saveError.setHeaderText("Error While Saving Score!");
-        }
-
-    }
 }

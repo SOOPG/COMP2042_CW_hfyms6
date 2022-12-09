@@ -3,9 +3,7 @@ package game;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -70,8 +68,21 @@ public class EndGame{
 
             if (resultOfSaveButton.get() == ButtonType.OK){
 
-                //Writes score into save file
-                scoreSaved.saveScoreButtonClicked(score);
+               TextInputDialog inputPlayerName = new TextInputDialog();
+                inputPlayerName.setTitle("Save Game");
+                inputPlayerName.getDialogPane().setContentText("Player Name:");
+                inputPlayerName.setHeaderText("Enter Your Name:");
+                Optional<String> result = inputPlayerName.showAndWait();
+                TextField inputName=inputPlayerName.getEditor();
+
+
+                if (result.isPresent()) {
+                    //Writes score into save file
+                    String playerName=inputName.getText();
+                    scoreSaved.saveScoreButtonClicked(score,playerName);
+                }
+
+
 
                 //Alerts User that score is saved
                 Alert alertSaved = new Alert(Alert.AlertType.INFORMATION);
