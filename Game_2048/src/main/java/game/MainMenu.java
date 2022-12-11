@@ -67,7 +67,8 @@ public class MainMenu extends Main{
        mainMenuRoot.getChildren().add(leaderboardButton);
        leaderboardButton.setOnMouseClicked(event->{
 
-            //primaryStage.setScene();
+            LeaderboardMenu viewLeaderboard=new LeaderboardMenu();
+            viewLeaderboard.displayLeaderboardMenu(primaryStage,mainMenuScene);
        });
 
        Button optionButton = new Button("Option");

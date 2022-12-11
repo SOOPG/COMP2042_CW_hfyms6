@@ -1,15 +1,14 @@
 package game;
 
-import java.io.File;  // Import File class
-import java.io.FileWriter;
-import java.io.IOException;  // Import IOException class to handle errors
-import java.io.FileNotFoundException;  // Import this class to handle errors
-import java.util.Scanner; // Import Scanner class to read text files
+import java.io.*;
+
 import javafx.scene.control.Alert;
 
 public class ScoreSaver {
 
     public void saveScoreButtonClicked(long score, String playerName){
+
+        StringBuffer player=new StringBuffer(playerName+" ");
 
         //Create a file for storing score and name
         try {
@@ -18,15 +17,13 @@ public class ScoreSaver {
                 System.out.println("File created: " + savedHighScore.getName());
 
                 //Calls method to write the score into the file
-                setPlayerInfo(score,playerName);
+                savePlayerInfo(score,player);
             }
 
             else {
                 //Has an existing save file, need to check if got scores....
                 System.out.println("File already exists.");
-
-                //Calls method to write the score into the file
-                setPlayerInfo(score,playerName);
+                savePlayerInfo(score,player);
                 System.out.println("Successfully override score.");
             }
 
@@ -39,37 +36,24 @@ public class ScoreSaver {
 
     }
 
-    public void setPlayerInfo(long score, String playerName){
+    //Write High Score and Name
+    public void savePlayerInfo(long score, StringBuffer player){
         try {
-            FileWriter scoreWriter = new FileWriter("PlayerInfoList.txt");
-            scoreWriter.write("" + score+" "+playerName);
-            System.out.println("" + score+" "+playerName);
-            scoreWriter.close();
-            System.out.println("Successfully wrote score.");
+            BufferedWriter playerInfoWriter = new BufferedWriter(new FileWriter("PlayerInfoList.txt",true));
+
+            playerInfoWriter.write(String.valueOf(player.append(score)));
+            /*
+            playerInfoWriter.append(System.lineSeparator());
+            playerInfoWriter.append(Long.toString(score));
+             */
+            playerInfoWriter.newLine();
+            playerInfoWriter.close();
+
+            System.out.println("Successfully wrote score into new file.");
 
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }
-
-    /*Get Score and Name
-    public void getPlayerInfo(){
-        try {
-            Scanner scoreReader = new Scanner(savedHighScore);
-            while (scoreReader.hasNextLine()) {
-                String data = scoreReader.nextLine();
-                System.out.println(data);
-            }
-            scoreReader.close();
-        }catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
-    }
-*/
-
-    //Write High Score and Name
-
 }
