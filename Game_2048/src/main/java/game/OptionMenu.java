@@ -24,7 +24,7 @@ public class OptionMenu extends Main{
         return singleInstance;
     }
 
-    public void displayOptionMenu(Stage primaryStage,Scene menuScene){
+    public void displayOptionMenu(Stage primaryStage,Scene mainMenuScene){
 
         Group optionMenuRoot = new Group();
         setGameRoot(optionMenuRoot);
@@ -37,24 +37,32 @@ public class OptionMenu extends Main{
         optionText.relocate(370,185);
         optionMenuRoot.getChildren().add(optionText);
 
-        Button changeColourThemeButton = new Button("Color Theme");
+        ColourThemeChanger.changeColourInScene(optionMenuScene);
+
+        Button changeColourThemeButton = new Button("Light Mode");
         changeColourThemeButton.setTextFill(Color.BLACK);
         changeColourThemeButton.setPrefSize(100,30);
         changeColourThemeButton.relocate(400,350);
         optionMenuRoot.getChildren().add(changeColourThemeButton);
         changeColourThemeButton.setOnMouseClicked(event-> {
 
+            ColourThemeChanger changeColour=new ColourThemeChanger();
+            changeColour.setColourTheme(optionMenuScene,"Light");
+
         });
 
-        Button changeMusicVolumeButton = new Button("Music");
+        Button changeMusicVolumeButton = new Button("Dark Mode");
         changeMusicVolumeButton.setTextFill(Color.BLACK);
         changeMusicVolumeButton.setPrefSize(100,30);
         changeMusicVolumeButton.relocate(400,450);
         optionMenuRoot.getChildren().add(changeMusicVolumeButton);
         changeMusicVolumeButton.setOnMouseClicked(event-> {
 
-        });
+            ColourThemeChanger changeColour=new ColourThemeChanger();
+            changeColour.setColourTheme(optionMenuScene,"Dark");
 
+        });
+/*
         Button changeSoundFXVolumeButton = new Button("Sound Effect");
         changeSoundFXVolumeButton.setTextFill(Color.BLACK);
         changeSoundFXVolumeButton.setPrefSize(100,30);
@@ -63,7 +71,7 @@ public class OptionMenu extends Main{
         changeSoundFXVolumeButton.setOnMouseClicked(event-> {
 
         });
-
+*/
         Button backToMainMenuButton = new Button("Back");
         backToMainMenuButton.setTextFill(Color.BLACK);
         backToMainMenuButton.setPrefSize(100,30);
@@ -71,9 +79,10 @@ public class OptionMenu extends Main{
         optionMenuRoot.getChildren().add(backToMainMenuButton);
         backToMainMenuButton.setOnMouseClicked(event-> {
 
-            primaryStage.setScene(menuScene);
-        });
+            primaryStage.setScene(mainMenuScene);
+            ColourThemeChanger.changeColourInScene(mainMenuScene);
 
+        });
         primaryStage.setScene(optionMenuScene);
     }
 }

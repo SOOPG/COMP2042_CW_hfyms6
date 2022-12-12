@@ -42,6 +42,8 @@ public class MainMenu extends Main{
        backgroundOfMenu.setY(180);
        mainMenuRoot.getChildren().add(backgroundOfMenu);
 
+       ColourThemeChanger.changeColourInScene(mainMenuScene);
+
        Text gameTitle = new Text("2048");
        gameTitle.setFill(Color.BLACK);
        gameTitle.setFont(Font.font("Nirmala UI", FontWeight.BOLD,80));
@@ -100,5 +102,6 @@ public class MainMenu extends Main{
        });
        //Show the Main Menu
        primaryStage.setScene(mainMenuScene);
+
     }
 }

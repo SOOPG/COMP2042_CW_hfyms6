@@ -42,6 +42,8 @@ public class DifficultySelectorMenu extends Main {
         selectDifficultyText.relocate(275,185);
         difficultySelectorMenuRoot.getChildren().add(selectDifficultyText);
 
+        ColourThemeChanger.changeColourInScene(difficultySelectorMenuScene);
+
         Button selectEasyDifficultyButton = new Button("Easy");
         selectEasyDifficultyButton.setTextFill(Color.BLACK);
         selectEasyDifficultyButton.setPrefSize(100,30);
@@ -89,6 +91,7 @@ public class DifficultySelectorMenu extends Main {
         backToMainMenuButton.setOnMouseClicked(event-> {
 
             primaryStage.setScene(menuScene);
+
         });
 
         //Show Difficulty Selector Menu

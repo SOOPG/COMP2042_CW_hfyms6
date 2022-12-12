@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -25,6 +26,19 @@ import static java.lang.Integer.parseInt;
 
 public class LeaderboardMenu extends Main{
 
+    public static LeaderboardMenu singleInstance = null;
+
+    //Construct DifficultySelectorMenu scene if there is no instance of it
+    public LeaderboardMenu(){
+
+    }
+
+    public static LeaderboardMenu getInstance(){
+        if(singleInstance == null)
+            singleInstance= new LeaderboardMenu();
+        return singleInstance;
+    }
+
     public void displayLeaderboardMenu(Stage primaryStage,Scene menuScene) {
 
         Group leaderboardMenuRoot = new Group();
@@ -32,10 +46,13 @@ public class LeaderboardMenu extends Main{
         Scene leaderboardMenuScene = new Scene(leaderboardMenuRoot, WIDTH, HEIGHT, Color.rgb(155, 252, 234));
         setGameScene(leaderboardMenuScene);
 
-        //Label for Leaderboard
-        Label leaderboardLabel = new Label("Leaderboard:");
-        Font font = Font.font("Nirmala UI", FontWeight.BOLD, FontPosture.REGULAR, 12);
-        leaderboardLabel.setFont(font);
+        Text gameLeaderboard = new Text("Leaderboard:");
+        gameLeaderboard.setFill(Color.BLACK);
+        gameLeaderboard.setFont(Font.font("Nirmala UI", FontWeight.BOLD,40));
+        gameLeaderboard.relocate(318,185);
+        leaderboardMenuRoot.getChildren().add(gameLeaderboard);
+
+        ColourThemeChanger.changeColourInScene(leaderboardMenuScene);
 
         TableView leaderboardTable = new TableView();
         TableColumn playerNameCol = new TableColumn("Player Name");
@@ -48,7 +65,7 @@ public class LeaderboardMenu extends Main{
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 50, 50, 60));
         vbox.relocate(255,250);
-        vbox.getChildren().addAll(leaderboardTable, leaderboardLabel);
+        vbox.getChildren().addAll(leaderboardTable);
 
          try {
                 File myObj = new File("PlayerInfoList.txt");
@@ -69,6 +86,16 @@ public class LeaderboardMenu extends Main{
                 throw new RuntimeException(e);
             }
         leaderboardMenuRoot.getChildren().add(vbox);
+
+        Button backToMainMenuButton = new Button("Back");
+        backToMainMenuButton.setTextFill(Color.BLACK);
+        backToMainMenuButton.setPrefSize(100,30);
+        backToMainMenuButton.relocate(387.5,700);
+        leaderboardMenuRoot.getChildren().add(backToMainMenuButton);
+        backToMainMenuButton.setOnMouseClicked(event-> {
+            primaryStage.setScene(menuScene);
+        });
+
         primaryStage.setScene(leaderboardMenuScene);
     }
 

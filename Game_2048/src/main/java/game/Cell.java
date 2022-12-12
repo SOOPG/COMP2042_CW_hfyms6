@@ -44,6 +44,7 @@ public class Cell {
         rectangle.setHeight(scale);
         rectangle.setWidth(scale);
         rectangle.setFill(Color.rgb(224, 226, 226, 0.5));
+        ColourThemeChanger.changeRectangleColourByColourMode(rectangle);
         this.root = root;
         this.textClass = TextMaker.getSingleInstance().madeText("0", x, y, root);
         root.getChildren().add(rectangle);
@@ -65,19 +66,51 @@ public class Cell {
     }
 
     void setColorByNumber(int number) {
-        switch (number) {
-            case 0 -> rectangle.setFill(Color.rgb(224, 226, 226, 0.5));
-            case 2 -> rectangle.setFill(Color.rgb(232, 255, 100, 0.5));
-            case 4 -> rectangle.setFill(Color.rgb(232, 220, 50, 0.5));
-            case 8 -> rectangle.setFill(Color.rgb(232, 200, 44, 0.8));
-            case 16 -> rectangle.setFill(Color.rgb(232, 170, 44, 0.8));
-            case 32 -> rectangle.setFill(Color.rgb(180, 120, 44, 0.7));
-            case 64 -> rectangle.setFill(Color.rgb(180, 100, 44, 0.7));
-            case 128 -> rectangle.setFill(Color.rgb(180, 80, 44, 0.7));
-            case 256 -> rectangle.setFill(Color.rgb(180, 60, 44, 0.8));
-            case 512 -> rectangle.setFill(Color.rgb(180, 30, 44, 0.8));
-            case 1024 -> rectangle.setFill(Color.rgb(250, 0, 44, 0.8));
-            case 2048 -> rectangle.setFill(Color.rgb(250, 0, 0, 1));
+
+        ColourThemeChanger.getCellColourByColourMode();
+
+        if (ColourThemeChanger.isLightMode==true) {
+
+            switch (number) {
+                case 0 -> rectangle.setFill(Color.rgb(20,29,28,0.1));
+
+                case 2 -> rectangle.setFill(Color.rgb(25, 145, 0));
+                case 4 -> rectangle.setFill(Color.rgb(26, 156, 0));
+                case 8 -> rectangle.setFill(Color.rgb(29, 171, 0));
+
+                case 16 -> rectangle.setFill(Color.rgb(35, 209, 0));
+                case 32 -> rectangle.setFill(Color.rgb(38, 225, 0));
+                case 64 -> rectangle.setFill(Color.rgb(41, 245, 0));
+
+                case 128 -> rectangle.setFill(Color.rgb(136, 255, 113));
+                case 256 -> rectangle.setFill(Color.rgb(149, 255, 128));
+
+                case 512 -> rectangle.setFill(Color.rgb(181, 255, 165));
+                case 1024 -> rectangle.setFill(Color.rgb(202, 255, 191));
+
+                case 2048 -> rectangle.setFill(Color.rgb(219, 165, 7));
+            }
+        }
+        else {
+            switch (number) {
+                case 0 -> rectangle.setFill(Color.rgb(44, 62, 80,0.5));
+
+                case 2 -> rectangle.setFill(Color.rgb(0, 0, 0));
+                case 4 -> rectangle.setFill(Color.rgb(20, 35, 5));
+                case 8 -> rectangle.setFill(Color.rgb(32, 51, 17));
+                case 16 -> rectangle.setFill(Color.rgb(48, 77, 26));
+
+                case 32 -> rectangle.setFill(Color.rgb(65, 102, 35));
+                case 64 -> rectangle.setFill(Color.rgb(81, 128, 43));
+
+                case 128 -> rectangle.setFill(Color.rgb(97, 153, 52));
+                case 256 -> rectangle.setFill(Color.rgb(113, 179, 60));
+
+                case 512 -> rectangle.setFill(Color.rgb(129, 204, 69));
+                case 1024 -> rectangle.setFill(Color.rgb(145, 230, 78));
+
+                case 2048 -> rectangle.setFill(Color.rgb(219, 165, 7));
+            }
         }
     }
 

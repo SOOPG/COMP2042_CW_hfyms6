@@ -38,5 +38,8 @@ public class GameSceneLoader extends Main{
         GameScene game = new GameScene();
         game.game(primaryStage, gameplayScene, gameplayRoot, endGameScene, endGameRoot);
         primaryStage.setScene(gameplayScene);
+
+        ColourThemeChanger.changeColourInScene(gameplayScene);
+        ColourThemeChanger.changeColourInScene(endGameScene);
     }
 }
