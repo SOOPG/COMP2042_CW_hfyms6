@@ -1,5 +1,7 @@
-package game;
+package Game.Menu;
 
+import Game.*;
+import Game.UserInterfaceDesigner.ColourThemeChanger;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -19,11 +21,11 @@ import java.util.Optional;
  * this MainMenu class extends Main class
  * due to inheriting stage,scene and root attributes from Main class
  * This Main Menu displays the UI when the user/player is in main menu scene
- * @version 1.6
+ * @version 1.6.1
  * @since version 1.1.4 ("Added Main Menu" in GitHub history)
  */
 
-public class MainMenu extends Main{
+public class MainMenu extends Main {
 
     /**
      * Initially no instance of MainMenu

@@ -1,5 +1,7 @@
-package game;
+package Game.UserInterfaceDesigner;
 
+import Game.GameController.GameScene;
+import Game.Main;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -11,11 +13,11 @@ import javafx.stage.Stage;
  * This GameSceneLoader loads the UI of Game scene when the user/player
  * has selected the difficulty in the difficulty selector menu
  *
- * @version 1.6
+ * @version 1.6.1
  * @since version 1.1.6 ("Difficulties Update" in GitHub history)
  */
 
-public class GameSceneLoader extends Main{
+public class GameSceneLoader extends Main {
 
     /**
      * This method creates GameSceneLoader if there is no gameScene loader instantiated

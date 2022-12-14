@@ -1,5 +1,8 @@
-package game;
+package Game.GameController;
 
+import Game.DataSaver.ScoreSaver;
+import Game.Menu.MainMenu;
+import Game.UserInterfaceDesigner.GameSceneLoader;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -18,7 +21,7 @@ import java.util.Optional;
  * go back to main menu
  * or exit game
  *
- * @version 1.6
+ * @version 1.6.1
  * @since version 1.0 (Initial Commit)
  */
 

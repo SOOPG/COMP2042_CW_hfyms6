@@ -1,19 +1,15 @@
-package game;
+package Game.GameController;
 
+import Game.UserInterfaceDesigner.TextMaker;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.Optional;
 import java.util.Random;
 
 /**
@@ -21,11 +17,11 @@ import java.util.Random;
  * while also serves as the main gameplay scene
  * that player plays 2048 game in this scene
  *
- * @version 1.6
+ * @version 1.6.1
  * @since 1.0 (Initial Commit)
  */
 
-class GameScene {
+public class GameScene {
     private static int HEIGHT = 700;
 
     //Total Number of Cells for 2 axises (X and Y)
@@ -66,7 +62,7 @@ class GameScene {
      * @since 1.0 (Initial Commit)
      */
 
-    static double getLENGTH() {
+     public static double getLENGTH() {
         return LENGTH;
     }
 
@@ -469,7 +465,7 @@ class GameScene {
      * @since 1.0 (Initial Commit)
      */
 
-    void game(Stage primaryStage,Scene gameScene, Group root, Scene endGameScene, Group endGameRoot) {
+    public void game(Stage primaryStage,Scene gameScene, Group root, Scene endGameScene, Group endGameRoot) {
         this.root = root;
         for (int i = 0; i < grid; i++) {
             for (int j = 0; j < grid; j++) {

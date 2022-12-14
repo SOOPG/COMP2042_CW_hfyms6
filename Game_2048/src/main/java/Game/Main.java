@@ -1,20 +1,16 @@
 /**
  * Main package where all the list of classes is located
  */
-package game; //Main package where all the list of classes is located
+package Game; //Main package where all the list of classes is located
 
+import Game.Menu.MainMenu;
 import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Group;
-import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+
 import java.util.Scanner;
 
 /**
@@ -23,14 +19,14 @@ import java.util.Scanner;
  * It is also responsible in starting the application in the Main Menu Scene
  *
  * @author Soo Min Hao
- * @version 1.6
+ * @version 1.6.1
  * @since version 1.0 ("Initial Commit" in GitHub history)
  */
 
 public class Main extends Application {
 
-    static final int WIDTH = 900;
-    static final int HEIGHT = 900;
+    public static final int WIDTH = 900;
+    public static final int HEIGHT = 900;
 
     /**
      * Create a new game root (for UI)

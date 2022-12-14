@@ -1,5 +1,6 @@
-package game;
+package Game.UserInterfaceDesigner;
 
+import Game.Main;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -10,7 +11,7 @@ import javafx.scene.shape.Rectangle;
  * when user presses 'Light' - it will display colour theme in light mode
  * when user presses 'Dark' - it will display colour theme in dark mode
  *
- * @version 1.6
+ * @version 1.6.1
  * @since 1.4 (Major Update: Colour Theme Update)
  */
 

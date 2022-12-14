@@ -1,5 +1,9 @@
-package game;
+package Game.Menu;
 
+import Game.UserInterfaceDesigner.ColourThemeChanger;
+import Game.GameController.GameScene;
+import Game.UserInterfaceDesigner.GameSceneLoader;
+import Game.Main;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,7 +20,7 @@ import javafx.stage.Stage;
  * This DifficultySelectorMenu displays the UI when the user/player is in difficulty selection scene
  * The player can select the difficulties they wish to play in Easy,Normal,Hard mode
  *
- * @version 1.6
+ * @version 1.6.1
  * @since version 1.1.4.5 (Added Difficulty Selector Menu)
  */
 

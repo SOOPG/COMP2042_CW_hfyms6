@@ -1,5 +1,7 @@
-package game;
+package Game.Menu;
 
+import Game.UserInterfaceDesigner.ColourThemeChanger;
+import Game.Main;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,11 +16,11 @@ import javafx.stage.Stage;
  * due to inheriting stage,scene and root attributes from Main class
  * This Option Menu displays the UI of option menu when the user/player is in option scene
  * The option menu allows users to change colour theme of the
- * @version 1.6
+ * @version 1.6.1
  * @since version 1.1.7.6
  */
 
-public class OptionMenu extends Main{
+public class OptionMenu extends Main {
 
     //Makes it so OptionMenu scene has only 1 instance and initially is null
     /**

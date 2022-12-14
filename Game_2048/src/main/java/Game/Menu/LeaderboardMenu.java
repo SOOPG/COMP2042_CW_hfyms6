@@ -1,19 +1,20 @@
-package game;
+package Game.Menu;
 
+import Game.UserInterfaceDesigner.ColourThemeChanger;
+import Game.DataSaver.FileData;
+import Game.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -30,11 +31,11 @@ import static java.lang.Integer.parseInt;
  * in PlayerInfoList.txt
  * It inherits stage and scene attributes from Main
  *
- * @version 1.6
+ * @version 1.6.1
  * @since version 1.3 (Leaderboard Update)
  */
 
-public class LeaderboardMenu extends Main{
+public class LeaderboardMenu extends Main {
 
     /**
      * Initially no leaderboard is instantiated

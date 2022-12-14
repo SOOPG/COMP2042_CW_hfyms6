@@ -1,4 +1,4 @@
-package game;
+package Game.DataSaver;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -8,7 +8,7 @@ import javafx.beans.property.SimpleStringProperty;
  * then saves it and place them in a table
  * When user clicks on leaderboard button in main menu
  *
- * @version 1.6
+ * @version 1.6.1
  * @since version 1.3 (Leaderboard Update)
  */
 
@@ -23,7 +23,7 @@ public class FileData {
      * @since version 1.3 (Leaderboard Update)
      */
 
-    FileData(String player, int score) {
+    public FileData(String player, int score) {
         this.playerName = new SimpleStringProperty(player);
         this.finalScore = new SimpleIntegerProperty(score);
 

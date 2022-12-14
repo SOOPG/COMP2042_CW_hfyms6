@@ -1,6 +1,8 @@
-package game;
+package Game.GameController;
 
 
+import Game.UserInterfaceDesigner.ColourThemeChanger;
+import Game.UserInterfaceDesigner.TextMaker;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -12,7 +14,7 @@ import javafx.scene.text.Text;
  * numbers and colour of the cells
  * in game scene
  *
- * @version 1.6
+ * @version 1.6.1
  * @since 1.0 (Initial Commit)
  */
 

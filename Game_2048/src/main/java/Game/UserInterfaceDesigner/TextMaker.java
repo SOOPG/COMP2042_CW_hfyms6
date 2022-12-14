@@ -1,5 +1,6 @@
-package game;
+package Game.UserInterfaceDesigner;
 
+import Game.GameController.GameScene;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -8,11 +9,11 @@ import javafx.scene.text.Text;
 /**
  * This class makes the text (number) located in the center of the cell
  *
- * @version 1.6
+ * @version 1.6.1
  * @since 1.0 (Initial Commit)
  */
 
-class TextMaker {
+public class TextMaker {
     private static TextMaker singleInstance = null;
 
     /**
@@ -31,7 +32,7 @@ class TextMaker {
      * @since version 1.0 (Initial Commit)
      */
 
-    static TextMaker getSingleInstance() {
+    public static TextMaker getSingleInstance() {
         if (singleInstance == null)
             singleInstance = new TextMaker();
         return singleInstance;
@@ -49,7 +50,7 @@ class TextMaker {
      * @since version 1.0 (Initial Commit)
      */
 
-    Text madeText(String input, double xCell, double yCell, Group root) {
+    public Text madeText(String input, double xCell, double yCell, Group root) {
         double length = GameScene.getLENGTH();
         double fontSize = (3 * length) / 8.0;
         Text text = new Text(input);
@@ -68,7 +69,7 @@ class TextMaker {
      * @since version 1.0(Initial Commit)
      */
 
-    static void changeTwoText(Text first, Text second) {
+    public static void changeTwoText(Text first, Text second) {
         String temp;
         temp = first.getText();
         first.setText(second.getText());
