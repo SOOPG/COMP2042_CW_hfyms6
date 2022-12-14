@@ -14,13 +14,16 @@ import javafx.stage.Stage;
  * due to inheriting stage,scene and root attributes from Main class
  * This Option Menu displays the UI of option menu when the user/player is in option scene
  * The option menu allows users to change colour theme of the
- * @version 1.4
+ * @version 1.6
  * @since version 1.1.7.6
  */
 
 public class OptionMenu extends Main{
 
     //Makes it so OptionMenu scene has only 1 instance and initially is null
+    /**
+     * Initially OptionMenu is not instantiated
+     */
     public static OptionMenu singleInstance = null;
 
     /**
@@ -37,6 +40,7 @@ public class OptionMenu extends Main{
     /**
      * Check if OptionMenu is already created or not
      * if already created, the OptionMenu will not be instantiated again
+     * @return single instance
      *
      * @since version 1.1.7.6
      */

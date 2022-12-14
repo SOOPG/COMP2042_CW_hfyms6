@@ -19,11 +19,15 @@ import java.util.Optional;
  * this MainMenu class extends Main class
  * due to inheriting stage,scene and root attributes from Main class
  * This Main Menu displays the UI when the user/player is in main menu scene
- * @version 1.4
+ * @version 1.6
  * @since version 1.1.4 ("Added Main Menu" in GitHub history)
  */
 
 public class MainMenu extends Main{
+
+    /**
+     * Initially no instance of MainMenu
+     */
 
     public static MainMenu singleInstance = null;
 
@@ -42,6 +46,7 @@ public class MainMenu extends Main{
      * if already created, the MainMenu will not be instantiated again
      *
      * @since version 1.1.4.5 (added Difficulty Selector Menu)
+     * @return single instance
      */
 
     public static MainMenu getInstance(){

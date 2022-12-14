@@ -18,7 +18,7 @@ import java.util.Optional;
  * go back to main menu
  * or exit game
  *
- * @version 1.4
+ * @version 1.6
  * @since version 1.0 (Initial Commit)
  */
 
@@ -50,8 +50,17 @@ public class EndGame{
     }
 
     //Create new instances and check if its null
+    /**
+     * Construct obj of ScoreSaver
+     */
     public ScoreSaver scoreSaved=new ScoreSaver();
+    /**
+     * Construct obj MainMenu
+     */
     public MainMenu backToMainMenu=new MainMenu();
+    /**
+     * Construct obj GameSceneLoader
+     */
     public GameSceneLoader startNewGame =new GameSceneLoader();
 
     /**

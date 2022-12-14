@@ -8,7 +8,7 @@ import javafx.beans.property.SimpleStringProperty;
  * then saves it and place them in a table
  * When user clicks on leaderboard button in main menu
  *
- * @version 1.4
+ * @version 1.6
  * @since version 1.3 (Leaderboard Update)
  */
 

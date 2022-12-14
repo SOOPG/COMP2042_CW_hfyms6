@@ -3,12 +3,17 @@ package game;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.Optional;
 import java.util.Random;
 
 /**
@@ -16,7 +21,7 @@ import java.util.Random;
  * while also serves as the main gameplay scene
  * that player plays 2048 game in this scene
  *
- * @version 1.4
+ * @version 1.6
  * @since 1.0 (Initial Commit)
  */
 
@@ -136,13 +141,14 @@ class GameScene {
      */
 
     //Check if game scene has empty cell
-    private int  haveEmptyCell() {
+    private int haveEmptyCell() {
         for (int i = 0; i < grid; i++) {
             for (int j = 0; j < grid; j++) {
                 if (cells[i][j].getNumber() == 0)
                     return 1;
-                if(cells[i][j].getNumber() == 2048)
+                if(cells[i][j].getNumber() == 2048){
                     return 0;
+                }
             }
         }
         return -1;
@@ -487,6 +493,7 @@ class GameScene {
         // Initially spawns 2 cells of either 2 or 4
         randomFillNumber(1);
         randomFillNumber(1);
+
 
         // When a key is pressed, move the cell in tile
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key ->{

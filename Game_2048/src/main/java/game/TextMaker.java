@@ -8,7 +8,7 @@ import javafx.scene.text.Text;
 /**
  * This class makes the text (number) located in the center of the cell
  *
- * @version 1.4
+ * @version 1.6
  * @since 1.0 (Initial Commit)
  */
 

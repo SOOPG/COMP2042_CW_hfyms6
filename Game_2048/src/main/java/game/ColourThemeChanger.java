@@ -10,15 +10,19 @@ import javafx.scene.shape.Rectangle;
  * when user presses 'Light' - it will display colour theme in light mode
  * when user presses 'Dark' - it will display colour theme in dark mode
  *
- * @version 1.4
+ * @version 1.6
  * @since 1.4 (Major Update: Colour Theme Update)
  */
 
 public class ColourThemeChanger extends Main {
 
-//Initially it is in Light Mode
+    //Initially it is in Light Mode
     String changeToMode ="Light";
 
+     // this returns ture if the game is on light mode
+    /**
+     * this check if the game is on light mode
+     */
     public static boolean isLightMode=true;
 
     String getColourTheme(String changeColourModeTo){
@@ -45,7 +49,7 @@ public class ColourThemeChanger extends Main {
     }
 
     /**
-     *
+     *This method sets the colour theme of the whole game
      * @param currentScene change the scenes to the selected colour mode
      * @param changeColourModeTo pass the string to change the colour mode to either light or dark
      * @return the colour theme

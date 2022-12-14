@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  * This DifficultySelectorMenu displays the UI when the user/player is in difficulty selection scene
  * The player can select the difficulties they wish to play in Easy,Normal,Hard mode
  *
- * @version 1.4
+ * @version 1.6
  * @since version 1.1.4.5 (Added Difficulty Selector Menu)
  */
 
@@ -41,6 +41,7 @@ public class DifficultySelectorMenu extends Main {
      * if already created, the OptionMenu will not be instantiated again
      *
      * @since version 1.1.4.5 (Added Difficulty Selector Menu)
+     * @return single instance of the obj
      */
 
     public static DifficultySelectorMenu getInstance(){

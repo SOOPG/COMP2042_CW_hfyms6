@@ -7,10 +7,9 @@ import javafx.scene.control.Alert;
 /**
  * This class saves score when user clicks on the button "Save Score" in EndGame Scene
  *
- * @version 1.4
+ * @version 1.6
  * @since version 1.1.3.1 (Added Difficulty Selector Menu)
  */
-
 public class ScoreSaver {
 
     /**

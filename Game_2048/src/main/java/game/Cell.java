@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
  * numbers and colour of the cells
  * in game scene
  *
- * @version 1.4
+ * @version 1.6
  * @since 1.0 (Initial Commit)
  */
 

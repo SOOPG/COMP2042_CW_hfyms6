@@ -11,12 +11,17 @@ import javafx.stage.Stage;
  * This GameSceneLoader loads the UI of Game scene when the user/player
  * has selected the difficulty in the difficulty selector menu
  *
- * @version 1.4
+ * @version 1.6
  * @since version 1.1.6 ("Difficulties Update" in GitHub history)
  */
 
 public class GameSceneLoader extends Main{
 
+    /**
+     * This method creates GameSceneLoader if there is no gameScene loader instantiated
+     *
+     * @since version 1.1.6 (Difficulties Update)
+     */
     //Makes it so DifficultySelectorMenu scene has only 1 instance and initially is null
     public static GameSceneLoader singleInstance = null;
 
@@ -36,6 +41,7 @@ public class GameSceneLoader extends Main{
      * if already created, the GameSceneLoader will not be instantiated again
      *
      * @since version 1.1.6 (Difficulties Update)
+     * @return single instance
      */
 
     public static GameSceneLoader getInstance(){

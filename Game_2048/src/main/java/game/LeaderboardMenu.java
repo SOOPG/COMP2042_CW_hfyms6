@@ -30,11 +30,15 @@ import static java.lang.Integer.parseInt;
  * in PlayerInfoList.txt
  * It inherits stage and scene attributes from Main
  *
- * @version 1.4
+ * @version 1.6
  * @since version 1.3 (Leaderboard Update)
  */
 
 public class LeaderboardMenu extends Main{
+
+    /**
+     * Initially no leaderboard is instantiated
+     */
 
     public static LeaderboardMenu singleInstance = null;
 
@@ -53,6 +57,7 @@ public class LeaderboardMenu extends Main{
      * if already created, the LeaderboardMenu will not be instantiated again
      *
      * @since 1.3 (Leaderboard Update)
+     * @return single instance
      */
 
     public static LeaderboardMenu getInstance(){

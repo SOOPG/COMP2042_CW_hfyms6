@@ -1,4 +1,7 @@
-package game;
+/**
+ * Main package where all the list of classes is located
+ */
+package game; //Main package where all the list of classes is located
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -15,12 +18,12 @@ import javafx.scene.shape.Rectangle;
 import java.util.Scanner;
 
 /**
- * <h1>2048 Game</h1>
+ * 2048 Game
  * This Main class initialize variables implemented in the program application (game)
  * It is also responsible in starting the application in the Main Menu Scene
  *
  * @author Soo Min Hao
- * @version 1.4
+ * @version 1.6
  * @since version 1.0 ("Initial Commit" in GitHub history)
  */
 
@@ -28,8 +31,18 @@ public class Main extends Application {
 
     static final int WIDTH = 900;
     static final int HEIGHT = 900;
+
+    /**
+     * Create a new game root (for UI)
+     */
     public Group gameRoot = new Group();
+
+
+    /**
+     * Create a new game scene
+     */
     public Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
+
     private static Scanner input= new Scanner(System.in);
 
     /**
