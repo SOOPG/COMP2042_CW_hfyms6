@@ -15,14 +15,34 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.Optional;
 
+/**
+ * this MainMenu class extends Main class
+ * due to inheriting stage,scene and root attributes from Main class
+ * This Main Menu displays the UI when the user/player is in main menu scene
+ * @version 1.4
+ * @since version 1.1.4 ("Added Main Menu" in GitHub history)
+ */
+
 public class MainMenu extends Main{
 
     public static MainMenu singleInstance = null;
 
+    /**
+     * This method creates Main Menu if there is no main menu instantiated
+     *
+     * @since version 1.1.4.5 (added Difficulty Selector Menu)
+     */
     //Construct DifficultySelectorMenu scene if there is no instance of it
     public MainMenu(){
 
     }
+
+    /**
+     * Check if MainMenu is already created or not
+     * if already created, the MainMenu will not be instantiated again
+     *
+     * @since version 1.1.4.5 (added Difficulty Selector Menu)
+     */
 
     public static MainMenu getInstance(){
         if(singleInstance == null)
@@ -30,6 +50,15 @@ public class MainMenu extends Main{
         return singleInstance;
     }
 
+    /**
+     * This method creates the Main Menu UI in the stage
+     * once the application is launched successfully
+     *
+     * @param primaryStage Create Main Menu in Stage
+     * @since version 1.1.4 ("Added Main Menu" in GitHub history)
+     */
+
+    // Display the main menu when starting up the application
    public void displayMainMenu(Stage primaryStage) {
 
        Group mainMenuRoot = new Group();
@@ -62,6 +91,7 @@ public class MainMenu extends Main{
            selectDifficultyMenu.getInstance().displaySelectorMenu(primaryStage,mainMenuScene);
        });
 
+        //Change to Leaderboard
        Button leaderboardButton = new Button("Leaderboard");
        leaderboardButton.setTextFill(Color.BLACK);
        leaderboardButton.setPrefSize(100,30);
@@ -70,9 +100,10 @@ public class MainMenu extends Main{
        leaderboardButton.setOnMouseClicked(event->{
 
             LeaderboardMenu viewLeaderboard=new LeaderboardMenu();
-            viewLeaderboard.displayLeaderboardMenu(primaryStage,mainMenuScene);
+            viewLeaderboard.getInstance().displayLeaderboardMenu(primaryStage,mainMenuScene);
        });
 
+       //Change to Option Menu
        Button optionButton = new Button("Option");
        optionButton.setTextFill(Color.BLACK);
        optionButton.setPrefSize(100,30);
@@ -84,6 +115,7 @@ public class MainMenu extends Main{
            GameSettings.getInstance().displayOptionMenu(primaryStage,mainMenuScene);
        });
 
+       //Exit Game
        Button exitButton = new Button("Exit");
        exitButton.setTextFill(Color.BLACK);
        exitButton.setPrefSize(100,30);

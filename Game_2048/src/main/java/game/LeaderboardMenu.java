@@ -24,20 +24,52 @@ import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
 
+/**
+ * This class displays the leaderboard UI
+ * while also display the information of player name and score
+ * in PlayerInfoList.txt
+ * It inherits stage and scene attributes from Main
+ *
+ * @version 1.4
+ * @since version 1.3 (Leaderboard Update)
+ */
+
 public class LeaderboardMenu extends Main{
 
     public static LeaderboardMenu singleInstance = null;
+
+    /**
+     * This method creates Leaderboard Menu if there is no leaderboard menu instantiated
+     * @since 1.3 (Leaderboard Update)
+     */
 
     //Construct DifficultySelectorMenu scene if there is no instance of it
     public LeaderboardMenu(){
 
     }
 
+    /**
+     * Check if LeaderboardMenu is already created or not
+     * if already created, the LeaderboardMenu will not be instantiated again
+     *
+     * @since 1.3 (Leaderboard Update)
+     */
+
     public static LeaderboardMenu getInstance(){
         if(singleInstance == null)
             singleInstance= new LeaderboardMenu();
         return singleInstance;
     }
+
+    /**
+     *This class displays a table
+     * that lists down the content of file
+     * in player and score list
+     *
+     * @param primaryStage set the leaderboard ui in stage when player is in leaderboard menu scene
+     * @param menuScene go back to main menu through a button
+     * @since 1.3 (Leaderboard Update)
+     */
 
     public void displayLeaderboardMenu(Stage primaryStage,Scene menuScene) {
 
@@ -68,18 +100,18 @@ public class LeaderboardMenu extends Main{
         vbox.getChildren().addAll(leaderboardTable);
 
          try {
-                File myObj = new File("PlayerInfoList.txt");
-                Scanner myReader = new Scanner(myObj);
-                ObservableList<FileData> dataList = FXCollections.observableArrayList();
-                //read the whole file until the next line is NULL
+                File playerInfoFile = new File("PlayerInfoList.txt");
+                Scanner myReader = new Scanner(playerInfoFile);
+                ObservableList<FileData> playerInfoList = FXCollections.observableArrayList();
 
+                //Read the file while the file has content in the next line
                 while (myReader.hasNextLine()) {
                     String data = myReader.nextLine();
                     System.out.println(data);
-                    String[] dataAlone = data.split(" ",2);
-                    dataList.add(new FileData(dataAlone[0], parseInt(dataAlone[1])));
+                    String[] playerInfoData = data.split(" ",2);
+                    playerInfoList.add(new FileData(playerInfoData[0], parseInt(playerInfoData[1])));
                 }
-             leaderboardTable.setItems(dataList);
+             leaderboardTable.setItems(playerInfoList);
              leaderboardTable.getColumns().addAll(playerNameCol,highScoreCol);
          }
          catch (FileNotFoundException e) {
@@ -99,8 +131,4 @@ public class LeaderboardMenu extends Main{
         primaryStage.setScene(leaderboardMenuScene);
     }
 
-    //change dataAlone to other variable
-    //change comments
-    //change myobj
-    //change datalist
 }

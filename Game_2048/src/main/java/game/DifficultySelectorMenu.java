@@ -10,21 +10,52 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * this DifficultySelector class extends Main class
+ * due to inheriting stage and scene attributes from Main class
+ * This DifficultySelectorMenu displays the UI when the user/player is in difficulty selection scene
+ * The player can select the difficulties they wish to play in Easy,Normal,Hard mode
+ *
+ * @version 1.4
+ * @since version 1.1.4.5 (Added Difficulty Selector Menu)
+ */
+
 public class DifficultySelectorMenu extends Main {
 
     //Makes it so DifficultySelectorMenu scene has only 1 instance and initially is null
     private static DifficultySelectorMenu singleInstance = null;
+
+    /**
+     * This method creates DifficultySelectorMenu if there is no difficulty selector menu instantiated
+     *
+     * @since version 1.1.4.5 (Added Difficulty Selector Menu)
+     */
 
     //Construct DifficultySelectorMenu scene if there is no instance of it
     public DifficultySelectorMenu(){
 
     }
 
+    /**
+     * Check if OptionMenu is already created or not
+     * if already created, the OptionMenu will not be instantiated again
+     *
+     * @since version 1.1.4.5 (Added Difficulty Selector Menu)
+     */
+
     public static DifficultySelectorMenu getInstance(){
         if(singleInstance == null)
             singleInstance= new DifficultySelectorMenu();
         return singleInstance;
     }
+
+    /**
+     * This method creates the difficulty selector UI in the stage
+     * once the user clicked on 'Play' button in the scene.
+     * @param primaryStage Create Main Menu in Stage
+     * @param menuScene Go back to main menu through a button
+     * @since version 1.1.7.6 (Added Main Menu)
+     */
 
     public void displaySelectorMenu(Stage primaryStage,Scene menuScene){
 
@@ -51,8 +82,8 @@ public class DifficultySelectorMenu extends Main {
         difficultySelectorMenuRoot.getChildren().add(selectEasyDifficultyButton);
         selectEasyDifficultyButton.setOnMouseClicked(event->{
 
-            GameScene.grid =8;
-            GameScene.setGrid(8);
+            GameScene.grid =6;
+            GameScene.setGrid(6);
             GameSceneLoader loadGame=new GameSceneLoader();
             loadGame.getInstance().loadGameScene(primaryStage);
         });

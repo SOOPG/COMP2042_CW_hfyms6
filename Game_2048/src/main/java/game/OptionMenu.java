@@ -9,20 +9,52 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * this OptionMenu extends Main class
+ * due to inheriting stage,scene and root attributes from Main class
+ * This Option Menu displays the UI of option menu when the user/player is in option scene
+ * The option menu allows users to change colour theme of the
+ * @version 1.4
+ * @since version 1.1.7.6
+ */
+
 public class OptionMenu extends Main{
 
+    //Makes it so OptionMenu scene has only 1 instance and initially is null
     public static OptionMenu singleInstance = null;
+
+    /**
+     * This method creates OptionMenu if there is no option menu instantiated
+     *
+     * @since version 1.1.7.6
+     */
 
     //Construct DifficultySelectorMenu scene if there is no instance of it
     public OptionMenu(){
 
     }
 
+    /**
+     * Check if OptionMenu is already created or not
+     * if already created, the OptionMenu will not be instantiated again
+     *
+     * @since version 1.1.7.6
+     */
+
     public static OptionMenu getInstance(){
         if(singleInstance == null)
             singleInstance= new OptionMenu();
         return singleInstance;
     }
+
+    /**
+     * This method creates the Option Menu UI in the stage
+     * once the player clicked on Option in the main menu
+     *
+     * @param primaryStage Create Main Menu in Stage
+     * @param mainMenuScene Go back to main menu through a button
+     * @since version 1.1.7.6 ("Added Main Menu" in GitHub history)
+     */
 
     public void displayOptionMenu(Stage primaryStage,Scene mainMenuScene){
 
@@ -62,20 +94,11 @@ public class OptionMenu extends Main{
             changeColour.setColourTheme(optionMenuScene,"Dark");
 
         });
-/*
-        Button changeSoundFXVolumeButton = new Button("Sound Effect");
-        changeSoundFXVolumeButton.setTextFill(Color.BLACK);
-        changeSoundFXVolumeButton.setPrefSize(100,30);
-        changeSoundFXVolumeButton.relocate(400,550);
-        optionMenuRoot.getChildren().add(changeSoundFXVolumeButton);
-        changeSoundFXVolumeButton.setOnMouseClicked(event-> {
 
-        });
-*/
         Button backToMainMenuButton = new Button("Back");
         backToMainMenuButton.setTextFill(Color.BLACK);
         backToMainMenuButton.setPrefSize(100,30);
-        backToMainMenuButton.relocate(400,650);
+        backToMainMenuButton.relocate(400,550);
         optionMenuRoot.getChildren().add(backToMainMenuButton);
         backToMainMenuButton.setOnMouseClicked(event-> {
 

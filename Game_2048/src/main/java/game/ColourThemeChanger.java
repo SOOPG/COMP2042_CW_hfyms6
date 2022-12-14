@@ -4,6 +4,16 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * This class is used to change the colour theme of the game
+ * It extends Main due to scene attribute is inherited from Main class
+ * when user presses 'Light' - it will display colour theme in light mode
+ * when user presses 'Dark' - it will display colour theme in dark mode
+ *
+ * @version 1.4
+ * @since 1.4 (Major Update: Colour Theme Update)
+ */
+
 public class ColourThemeChanger extends Main {
 
 //Initially it is in Light Mode
@@ -17,6 +27,14 @@ public class ColourThemeChanger extends Main {
         return this.changeToMode;
     }
 
+    /**
+     * This method checks if the user is in light mode or dark mode
+     * and changes the colour of a scene according to the isLightMode boolean when called
+     * isLightMode checks if user is on light mode
+     *
+     * @param currentScene change the colour of currentScene where the method is called
+     * @since version 1.4 (Major Update: Colour Theme Update)
+     */
     public static void changeColourInScene(Scene currentScene){
 
         if (ColourThemeChanger.isLightMode) {
@@ -25,6 +43,14 @@ public class ColourThemeChanger extends Main {
         else
             currentScene.setFill(Color.rgb(104,104,104));
     }
+
+    /**
+     *
+     * @param currentScene change the scenes to the selected colour mode
+     * @param changeColourModeTo pass the string to change the colour mode to either light or dark
+     * @return the colour theme
+     * @since version 1.4 (Major Update: Colour Theme Update)
+     */
 
     public boolean setColourTheme(Scene currentScene, String changeColourModeTo){
 
@@ -45,9 +71,21 @@ public class ColourThemeChanger extends Main {
         return isLightMode;
     }
 
+    /**
+     * This method gets the colour mode
+     * @return the colour theme
+     * @since version 1.4 (Major Update: Colour Theme Update)
+     */
+
     public static boolean getCellColourByColourMode(){
         return isLightMode;
     }
+
+    /**
+     * This method changes the cell colour by colour mode
+     * @param rectangle change the colour of rectangles (cells) in Cell class
+     * @since version 1.4 (Major Update: Colour Theme Update)
+     */
 
     public static void changeRectangleColourByColourMode(Rectangle rectangle){
 

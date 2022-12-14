@@ -11,12 +11,29 @@ import javafx.stage.Stage;
 
 import java.util.Random;
 
+/**
+ * This class is responsible for moving cells
+ * while also serves as the main gameplay scene
+ * that player plays 2048 game in this scene
+ *
+ * @version 1.4
+ * @since 1.0 (Initial Commit)
+ */
+
 class GameScene {
     private static int HEIGHT = 700;
 
     //Total Number of Cells for 2 axises (X and Y)
     public static int grid;
     private static boolean isMoved = false;
+
+    /**
+     * THis method sets the number of grids (one axis) in the game based on
+     * the difficulty selected by the player
+     *
+     * @param number the number of grids (in one axis)
+     * @since 1.0 (Initial Commit)
+     */
 
     //How many Cells
     public static void setGrid(int number) {
@@ -38,9 +55,24 @@ class GameScene {
     //Parameter to check what type of movement it is to add score
     public String moveVariable;
 
+    /**
+     * This method changes the size of cells in gameScene
+     * @return the size of length of cell
+     * @since 1.0 (Initial Commit)
+     */
+
     static double getLENGTH() {
         return LENGTH;
     }
+
+    /**
+     * This method spawns a random cell tile in the empty cell grid
+     * @param turn if the turn is 1;
+     * it means that game has just started,
+     * initially spawns two cell tiles in an empty cell grid
+     * else only spawn a cell randomly in an empty cell grid
+     * @since 1.0 (Initial Commit)
+     */
 
     // Fills in a number either 2 or 4 each turn in random locations
     // Within the cell that is not occupied by a number cell
@@ -92,6 +124,17 @@ class GameScene {
             emptyCells[xCell][yCell].setColorByNumber(4);
         }
     }
+
+    /**
+     * This method checks if there is no more empty cell tile in the grid
+     *
+     * @return the gamestate where
+     * 1 is game still in progress
+     * 0 is the game is won
+     * -1 is when there is no more empty cell in grid and game is considered (lost)
+     * @since 1.0 (Initial Commit)
+     */
+
     //Check if game scene has empty cell
     private int  haveEmptyCell() {
         for (int i = 0; i < grid; i++) {
@@ -104,6 +147,17 @@ class GameScene {
         }
         return -1;
     }
+
+    /**
+     * This method is invoked to move the cells to a destination which has empty cells
+     * based on the direction of movement performed by player
+     * @param i the x-coordinate of cell tile
+     * @param j the y-axis coordinate of cell tile
+     * @param direct the direction of movement
+     *
+     * @return the coordinate if it is a valid move (up,down,left,right)
+     * @since 1.0 (Initial Commit)
+     */
 
     private int passDestination(int i, int j, char direct) {
         int coordinate = j;
@@ -158,6 +212,12 @@ class GameScene {
         return -1;
     }
 
+    /**
+     * This method is called to move the movement of tile up
+     * when the player performs a move up movement
+     * @since 1.0 (Initial Commit)
+     */
+
     private void moveUp() {
         for (int j = 0; j < grid; j++) {
             for (int i = 1; i < grid; i++) {
@@ -169,6 +229,13 @@ class GameScene {
         }
 
     }
+
+    /**
+     * This method is called to notify the movement of tile down
+     * when the player performs a move down movement
+     * @since 1.0 (Initial Commit)
+     */
+
     private void moveDown() {
         for (int j = 0; j < grid; j++) {
             for (int i = grid - 1; i >= 0; i--) {
@@ -180,6 +247,23 @@ class GameScene {
         }
 
     }
+
+    /**
+     * This method is called to check
+     * if the vertical movement(up,down)
+     * is a valid move or not
+     * invalid movement includes:
+     * at border of grid, destination grid is occupied by another cell
+     *
+     * @param i x-coordinate of cell
+     * @param j y-coordinate of cell
+     * @param des the destination cell where the cell will be moved to
+     * @param sign the direction the grid is moving
+     *
+     * @return true if is a valid move
+     * false if it is invalid move
+     */
+
     private boolean isValidDesV(int i, int j, int des, int sign) {
         if (des + sign < grid && des + sign >= 0)
             if (cells[des + sign][j].getNumber() == cells[i][j].getNumber() && !cells[des + sign][j].getModify()
@@ -188,6 +272,19 @@ class GameScene {
             }
         return false;
     }
+
+    /**
+     * This method is called to move
+     * the tiles vertically
+     * if is a valid move
+     *calls the method to add the sum of two values of the cell
+     *
+     * @param i x-coordinate of cell
+     * @param j y-coordinate of cell
+     * @param des the destination cell where the cell will be moved to
+     * @param sign the direction the grid is moving
+     */
+
     private void moveVertically(int i, int j, int des, int sign) {
         if (isValidDesV(i, j, des, sign)) {
             moveVariable="vertical";
@@ -199,6 +296,12 @@ class GameScene {
         }
     }
 
+    /**
+     * This method is called to notify the movement of tile left
+     * when the player performs a move left movement
+     * @since 1.0 (Initial Commit)
+     */
+
     private void moveLeft() {
         for (int i = 0; i < grid; i++) {
             for (int j = 1; j < grid; j++) {
@@ -209,6 +312,13 @@ class GameScene {
             }
         }
     }
+
+    /**
+     * This method is called to notify the movement of tile right
+     * when the player performs a move right movement
+     * @since 1.0 (Initial Commit)
+     */
+
     private void moveRight() {
         for (int i = 0; i < grid; i++) {
             for (int j = grid - 1; j >= 0; j--) {
@@ -219,6 +329,24 @@ class GameScene {
             }
         }
     }
+
+    /**
+     * This method is called to check
+     * if the vertical movement(up,down)
+     * is a valid move or not
+     * invalid movement includes:
+     * at border of grid, destination grid is occupied by another cell
+     *
+     * @param i x-coordinate of cell
+     * @param j y-coordinate of cell
+     * @param des the destination cell where the cell will be moved to
+     * @param sign the direction the grid is moving
+     *
+     * @return true if is a valid move
+     * false if it is invalid move
+     * @since 1.0 (Initial Commit)
+     */
+
     private boolean isValidDesH(int i, int j, int des, int sign) {
         if (des + sign < grid && des + sign >= 0) {
             if (cells[i][des + sign].getNumber() == cells[i][j].getNumber() && !cells[i][des + sign].getModify()
@@ -228,6 +356,21 @@ class GameScene {
         }
         return false;
     }
+
+    /**
+     * This method is called to move
+     * the tiles horizontally
+     * if is a valid move
+     *calls the method to add the sum of two values of the cell
+     *
+     * @param i x-coordinate of cell
+     * @param j y-coordinate of cell
+     * @param des the destination cell where the cell will be moved to
+     * @param sign the direction the grid is moving
+     *
+     * @since 1.0 (Initial Commit)
+     */
+
     private void moveHorizontally(int i, int j, int des, int sign) {
         if (isValidDesH(i, j, des, sign)) {
             moveVariable="horizontal";
@@ -239,6 +382,16 @@ class GameScene {
         }
     }
 
+    /**
+     * Check if there is same number next to each other
+     * @param i x-coordinate of cell
+     * @param j y-coordinate of cell
+     * @return true if the cells are near
+     * else false
+     *
+     * @since 1.0 (Initial Commit)
+     */
+
     //If it has same number near
     private boolean haveSameNumberNearly(int i, int j) {
         if (i < grid - 1 && j < grid - 1) {
@@ -249,6 +402,14 @@ class GameScene {
         }
         return false;
     }
+
+    /**
+     * this method is called to check if there is no valid move in the grid
+     *
+     * @return true (game is lost) if there is no valid movement left
+     * @since 1.0 (Initial Commit)
+     */
+
     //If no empty cells set condition to end
     private boolean canNotMove() {
         for (int i = 0; i < grid; i++) {
@@ -260,6 +421,20 @@ class GameScene {
         }
         return true;
     }
+
+    /**
+     *This method is called to sum the values of two same value cells
+     *and add them to the total score
+     * based on vertical and horizontal summing
+     *
+     * @param i x-coordinate of cell
+     * @param j y-coordinate of cell
+     * @param des the destination cell where the cell will be moved to
+     * @param sign the direction the grid is moving
+     *
+     * @param moveVariable is passed to c
+     * @since 1.0 (Initial Commit)
+     */
 
     //Adds up score
     private void sumCellNumbersToScore(int i, int j, int des, int sign, String moveVariable) {
@@ -276,6 +451,17 @@ class GameScene {
         }
         isMoved = true;
     }
+
+    /**
+     *
+     * @param primaryStage set the gameScene ui in stage when player is in leaderboard menu scene
+     * @param gameScene get the UI of game scene from GameSceneLoader
+     * @param root change the UI to game scene ui when the scene is in gameplay scene
+     * @param endGameScene change scene to end game scene if the player loses/ wins the game
+     * @param endGameRoot add the UI of end game scene when the scene is in end game
+     *
+     * @since 1.0 (Initial Commit)
+     */
 
     void game(Stage primaryStage,Scene gameScene, Group root, Scene endGameScene, Group endGameRoot) {
         this.root = root;

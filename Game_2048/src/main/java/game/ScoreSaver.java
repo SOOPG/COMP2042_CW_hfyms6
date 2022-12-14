@@ -4,9 +4,26 @@ import java.io.*;
 
 import javafx.scene.control.Alert;
 
+/**
+ * This class saves score when user clicks on the button "Save Score" in EndGame Scene
+ *
+ * @version 1.4
+ * @since version 1.1.3.1 (Added Difficulty Selector Menu)
+ */
+
 public class ScoreSaver {
 
-    public void saveScoreButtonClicked(long score, String playerName){
+    /**
+     * This method is called when user clicks on the button "Save Score" in EndGame Scene
+     * It will attempt to create a save file named PlayerInfoList.txt
+     * then calls savePlayerInfo method
+     * to save the player name and score into the file
+     *
+     * @param score the final score of player
+     * @param playerName the name of player input in the text dialog
+     * @since version 1.1.3.1 (Added Difficulty Selector Menu)
+     */
+    public void createSaveFile(long score, String playerName){
 
         StringBuffer player=new StringBuffer(playerName+" ");
 
@@ -36,16 +53,21 @@ public class ScoreSaver {
 
     }
 
+    /**
+     * This method saves the player information into file called PlayerInfoList.txt
+     * as the format: "playerName score"
+     * @param score save the score of player into file called PlayerInfoList.txt
+     * @param player save the name of player into file called PlayerInfoList.txt
+     *
+     * @since version 1.2.1 (Added Saving Feature)
+     */
+
     //Write High Score and Name
     public void savePlayerInfo(long score, StringBuffer player){
         try {
             BufferedWriter playerInfoWriter = new BufferedWriter(new FileWriter("PlayerInfoList.txt",true));
 
             playerInfoWriter.write(String.valueOf(player.append(score)));
-            /*
-            playerInfoWriter.append(System.lineSeparator());
-            playerInfoWriter.append(Long.toString(score));
-             */
             playerInfoWriter.newLine();
             playerInfoWriter.close();
 
