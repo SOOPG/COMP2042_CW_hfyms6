@@ -7,8 +7,12 @@
 ### The coursework's objective is to given incompleted 2048 code, refactor and redesign the game
 ### You require an IDE (example: Intellij) to compile the code and run this game as these codes are build on Intellij IDE.
 ### You are also required to have at least a java version of Java 19 (JDK 19) to compile the codes
+### Version of game written as V1.x.x
+### Stable & Playable Version is the final version of game
+
 
 [Download Java JDK](https://www.oracle.com/my/java/technologies/downloads/#jdk19-windows)
+
 [Download Intellij](https://www.jetbrains.com/idea/)
 
 ------------------------------------------------------------------------------------------------------------
